@@ -1,5 +1,8 @@
 package ChatApp.db;
 
+import ChatApp.core.Role;
+import ChatApp.core.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -74,6 +77,43 @@ public boolean checkPass(int userID, String pass){
     }
 
     return newID != 0;
+}
+public void setUser(User curUser){
+    Connection conn = createConnection();
+    Statement st = null;
+    ResultSet rs = null;
+    String query =  "SELECT * FROM `users` "+
+            "WHERE `id` = '" + curUser.id + "';";
+    try {
+        st = conn.createStatement();
+        rs = st.executeQuery(query);
+        while(rs.next()){
+            curUser.id = rs.getInt(1);
+            curUser.username = rs.getString(2);
+            curUser.roleID = rs.getInt(4);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+public Role readRole(Role role, User user){
+    Connection conn = createConnection();
+    Statement st = null;
+    ResultSet rs = null;
+    String query =  "SELECT * FROM `roles` "+
+                    "WHERE `id` = '" + user.roleID + "';";
+    try {
+        st = conn.createStatement();
+        rs = st.executeQuery(query);
+        while(rs.next()){
+            role.canCreateUser = rs.getBoolean(2);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return role;
 }
 
  //Method creating connection to DB

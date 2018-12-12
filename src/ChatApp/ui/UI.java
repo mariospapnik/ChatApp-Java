@@ -1,5 +1,6 @@
 package ChatApp.ui;
 
+import ChatApp.core.User;
 import ChatApp.db.Database;
 import com.sun.deploy.uitoolkit.ui.ConsoleController;
 import com.sun.deploy.uitoolkit.ui.ConsoleWindow;
@@ -45,15 +46,23 @@ public interface UI {
         showExpBox("ChatApp");
         showExpBox("Enter\nUsername");
         String username = sc.nextLine();
-        int id = db.checkUser(username);
-        if (id!=0) {
+        int userID = db.checkUser(username);
+
+        if (userID!=0) {
             clrscr();
             showExpBox("Enter\npassword");
             String pass = sc.nextLine();
-            boolean isPassCorrect = db.checkPass(id, pass);
+            boolean isPassCorrect = db.checkPass(userID, pass);
+
             if (isPassCorrect) {
+                //Create the current user object
+                User curUser = new User(userID);
+                //Populate the user data from the DB
+                db.setUser(curUser);
+                //Get the user's role!
+                db.readRole(curUser.role);
                 clrscr();
-                showExpBox("Logged in as\nadmin\n \nPress any key...");
+                showExpBox("Logged in as\n"+username+"\n \nPress any key...");
                 sc.nextLine();
                 userScreen();
             }

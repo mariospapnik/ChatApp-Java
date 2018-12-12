@@ -1,34 +1,36 @@
 package ChatApp.core;
 
-import ChatApp.db_old.Database;
+import ChatApp.db.Database;
+import java.util.Map;
 
 public class Role {
-    int id;
-    boolean canCreateUser;
-    boolean canSearchUser;
-    boolean canToogleUser;
-    boolean canChangeUserType;
+    public int id;
+    public boolean canCreateUser;
+    public boolean canSearchUser;
+    public boolean canToogleUser;
+    public boolean canChangeUserType;
 
-    boolean canCreateChat;
-    boolean canSearchChat;
-    boolean canGetChatTable;
-    boolean canViewChats;
-    boolean canEditChatName;
-    boolean canToogleChat;
-    boolean canDeleteChat;
+    public boolean canCreateChat;
+    public boolean canSearchChat;
+    public boolean canGetChatTable;
+    public boolean canViewChats;
+    public boolean canEditChatName;
+    public boolean canToogleChat;
+    public boolean canDeleteChat;
 
-    boolean canAddUserToChat;
-    boolean canGetChatUsers;
-    boolean canToogleChatUser;
+    public boolean canAddUserToChat;
+    public boolean canGetChatUsers;
+    public boolean canToogleChatUser;
 
-    boolean canSendMsg;
-    boolean canReadMsg;
-    boolean canSearchMsg;
-    boolean canToogleMsg;
-    boolean canResetAllMsgs;
+    public boolean canSendMsg;
+    public boolean canReadMsg;
+    public boolean canSearchMsg;
+    public boolean canToogleMsg;
+    public boolean canResetAllMsgs;
 
-    public Role(int id, Database db){
+    public Role(int id){
         this.id  = id;
+        this = db.readRole(this);
 //        String[] results = db.getRole(id);
         //SET ALL THE BOOLEANS!!
     }
