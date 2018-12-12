@@ -14,7 +14,7 @@ public class Database {
     private static final String PREFACE = "jdbc:mysql://";
     private String database = "sakila";
     private String username = "mitsos";
-    private String password = "1234";
+    private String password = "kiriosmitsos";
     private String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
     private String urlDB;
 
