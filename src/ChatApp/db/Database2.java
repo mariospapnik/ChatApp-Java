@@ -1,13 +1,8 @@
 package ChatApp.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class Database {
+public class Database2 {
     private static Class dbClass;
     private String server = "localhost:3306";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -30,10 +25,6 @@ public void registerDriver() {
         System.out.println("Driver not registered!");
         e.printStackTrace();
     }
-}
-
-public boolean checkUser(String username){
-     return true;
 }
 
  //Method creating connection to DB
