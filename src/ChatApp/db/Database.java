@@ -12,7 +12,7 @@ public class Database {
     private String server = "localhost:3306";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String PREFACE = "jdbc:mysql://";
-    private String database = "sakila";
+    private String database = "chat02";
     private String username = "mitsos";
     private String password = "kiriosmitsos";
     private String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
