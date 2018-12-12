@@ -15,8 +15,8 @@ public class Database {
     private static final String FULL_DB_URL = "jdbc:mysql://" + DB_URL2 + "/" + DATABASE + PARAMETERS;
     //?zeroDateTimeBehavior=convertToNull;
     //?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    private static final String DB_USER = "takis";
-    private static final String DB_PASSWD = "Tr1gk1$";
+    private static final String DB_USER = "mitsos";
+    private static final String DB_PASSWD = "kiriosmitsos";
 
 
     public void registerDriver() {
