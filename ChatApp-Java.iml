@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../Libs/jansi-1.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../Libs/mysql-connector-java-8.0.13/mysql-connector-java-8.0.13.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

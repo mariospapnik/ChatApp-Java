@@ -13,15 +13,20 @@ public class Database {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String PREFACE = "jdbc:mysql://";
     private String database = "chat02";
-    private String username = "mitsos";
-    private String password = "kiriosmitsos";
-    private String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
+    private String username = "root";
+    private String password = "kiriosroot";
+//    private String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
+    private String options = "";
     private String urlDB;
 
- //Method create URL for connecting
- public void createURL(){
-     urlDB = ( PREFACE + server + "/" + database + options);
- }
+    public Database(){
+        registerDriver();
+        createURL();
+    }
+     //Method create URL for connecting
+    public void createURL(){
+         urlDB = ( PREFACE + server + "/" + database + options);
+     }
 
 public void registerDriver() {
     try {
@@ -32,15 +37,48 @@ public void registerDriver() {
     }
 }
 
-public boolean checkUser(String username){
-     return true;
+public int checkUser(String username){
+    int userID = 0;
+    Connection conn = createConnection();
+    Statement st = null;
+    ResultSet rs = null;
+    String query = "SELECT * FROM `users` WHERE `username` = \'" +username + "\';";
+    try {
+        st = conn.createStatement();
+        rs = st.executeQuery(query);
+        while(rs.next()){
+            userID = rs.getInt(1);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return userID;
+}
+
+public boolean checkPass(int userID, String pass){
+    boolean userAuth = false;
+    int newID = 0;
+    Connection conn = createConnection();
+    Statement st = null;
+    ResultSet rs = null;
+    String query = "SELECT * FROM `users` WHERE `id` = '" +userID + "' AND `pass` = '"+ pass+"';";
+    try {
+        st = conn.createStatement();
+        rs = st.executeQuery(query);
+        while(rs.next()){
+            newID = rs.getInt(1);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return newID != 0;
 }
 
  //Method creating connection to DB
 public Connection createConnection(){
     Connection conn = null;
-    registerDriver();
-    createURL();
 
     try {
         conn = DriverManager.getConnection(urlDB,username,password);

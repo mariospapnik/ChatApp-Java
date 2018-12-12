@@ -20,8 +20,8 @@ public interface UI {
 
     //method to display the main screen
     default void mainScreen() {
-        clrscr();
         while (true) {
+            clrscr();
             showExpBox("ChatApp");
             showExpBox("1. Login  \n2. Sign up\n3. Exit   ");
             String choice = sc.nextLine();
@@ -43,21 +43,55 @@ public interface UI {
     default void loginScreen() {
         clrscr();
         showExpBox("ChatApp");
-        showExpBox("Enter\nyour\nUsername");
+        showExpBox("Enter\nUsername");
         String username = sc.nextLine();
-        boolean doesUserExist = db.checkUser(username);
-        if (doesUserExist) {
-            userScreen();
+        int id = db.checkUser(username);
+        if (id!=0) {
+            clrscr();
+            showExpBox("Enter\npassword");
+            String pass = sc.nextLine();
+            boolean isPassCorrect = db.checkPass(id, pass);
+            if (isPassCorrect) {
+                clrscr();
+                showExpBox("Logged in as\nadmin\n \nPress any key...");
+                sc.nextLine();
+                userScreen();
+            }
+//
+
         }
     }
 
     default void signUpScreen() {
+        String username;
+        String pass;
         clrscr();
+        showExpBox("Create new user\nEnter username");
+        username = sc.nextLine();
+        int id = db.checkUser(username);
+        if (id==0) {
+            clrscr();
+            showExpBox(username+"\n Enter password");
+            pass = sc.nextLine();
+        }
 
     }
 
     default void userScreen() {
         clrscr();
+        showExpBox("admin");
+        showExpBox("1.Add User\n2.View Users\n3.View Chats\n4.check\n5.Log out");
+        String choice = sc.nextLine();
+        switch (choice) {
+            case "1":
+                break;
+            case "2":
+                break;
+            case "5":
+                clrscr();
+                showExpBox("Bye!");
+                return;
+        }
     }
 
     default void searchUserScreen() {

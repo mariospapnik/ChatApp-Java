@@ -4,9 +4,6 @@ import ChatApp.core.Chat;
 import ChatApp.core.User;
 import ChatApp.db.Database;
 import ChatApp.ui.UI;
-import org.fusesource.jansi.Ansi;
-import org.fusesource.jansi.AnsiConsole;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,9 +13,6 @@ public class Main implements UI{
     static Database db;
 
     Main(){
-        db = new Database();
-
-//        startChatApp();
     }
 
     public static void main(String[] args) {
