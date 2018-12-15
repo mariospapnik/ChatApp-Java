@@ -1,5 +1,6 @@
 package ChatApp.ui;
 
+import ChatApp.core.Chat;
 import ChatApp.core.User;
 import ChatApp.db.Database;
 import com.sun.deploy.uitoolkit.ui.ConsoleController;
@@ -8,6 +9,7 @@ import com.sun.deploy.uitoolkit.ui.ConsoleWindow;
 import java.io.Console;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Scanner;
 
 public interface UI {
@@ -44,27 +46,25 @@ public interface UI {
     default void loginScreen() {
         clrscr();
         showExpBox("ChatApp");
+
         showExpBox("Enter\nUsername");
         String username = sc.nextLine();
-        int userID = db.checkUser(username);
+
+        int userID = db.checkUser(username);    //Check if username exists in the db
 
         if (userID!=0) {
             clrscr();
             showExpBox("Enter\npassword");
             String pass = sc.nextLine();
-            boolean isPassCorrect = db.checkPass(userID, pass);
+            boolean isPassCorrect = db.checkPass(userID, pass); // Check if the Password is correct
 
             if (isPassCorrect) {
-                //Create the current user object
-                User curUser = new User(userID);
-                //Populate the user data from the DB
-                db.setUser(curUser);
-                //Get the user's role!
-                db.readRole(curUser.role);
+                User curUser = new User(userID);    //create the user
+                db.setUser(curUser);      //Populate the user data from the DB
                 clrscr();
-                showExpBox("Logged in as\n"+username+"\n \nPress any key...");
+                showExpBox("Logged in as\n"+curUser.username+"\n \nPress any key...");
                 sc.nextLine();
-                userScreen();
+                userScreen(curUser);
             }
 //
 
@@ -76,40 +76,98 @@ public interface UI {
         String pass;
         clrscr();
         showExpBox("Create new user\nEnter username");
-        username = sc.nextLine();
-        int id = db.checkUser(username);
-        if (id==0) {
-            clrscr();
-            showExpBox(username+"\n Enter password");
-            pass = sc.nextLine();
+        //username input
+        while(true) {
+            username = sc.nextLine();
+            int id = db.checkUser(username);
+            if (id != 0) {
+                clrscr();
+                showExpBox(username + "\n already exists!\n");
+            }
+            if (id == 0){
+                break;
+            }
         }
+        clrscr();
+        //password input
+        showExpBox(username + "\n Enter password");
+        while(true) {
+            pass = sc.nextLine();
+            showExpBox("Please\nrepeat\nyour password");
+            String passRepeat = sc.nextLine();
+            if (passRepeat.equals(pass)) {
+                int isCreated = db.createUser(username, pass);
+                if (isCreated==1) {
+                    showExpBox("User\n"+username+"\nwas created!\nPlease\nlog in.");
+                }
+                else{
+                    showExpBox("Something\nwent wrong!\nPlease\ntry again.");
+                }
+                break;
+            }
+            else {
+                showExpBox("Passwords are\nnot identical\ntry\nagain");
+            }
+        }
+
 
     }
 
-    default void userScreen() {
+    default void userScreen(User curUser) {
         clrscr();
-        showExpBox("admin");
-        showExpBox("1.Add User\n2.View Users\n3.View Chats\n4.check\n5.Log out");
+        curUser.setRoleRights();    //Create the role for the User!
+        showExpBox("1.Users\n2.Chats\n3.Back");
         String choice = sc.nextLine();
         switch (choice) {
             case "1":
+                clrscr();
+                showExpBox("Users");
+                searchUserScreen(curUser);
                 break;
             case "2":
+                clrscr();
+                showExpBox("Chats");
+                curUser.getChats();
+                viewChatsScreen(curUser);
                 break;
-            case "5":
+            case "3":
                 clrscr();
                 showExpBox("Bye!");
                 return;
         }
     }
 
-    default void searchUserScreen() {
+    default void viewChatsScreen(User curUser) {
+        clrscr();
+        StringBuilder chatsStr = new StringBuilder().append("Chats for:"+curUser.username +"\n");
+        System.out.println(curUser.chats.size());
+        for(Chat chat : curUser.chats){
+            chatsStr.append(chat.id + ": " + chat.chatName + "\n");
+            System.out.println("one more!");
+        }
+        chatsStr.append("Please select:");
+        showExpBox(chatsStr.toString());
+
+        String choice = sc.nextLine();
+
     }
 
-    default void searchChatScreen() {
-    }
+    default void searchUserScreen(User curUser) {
+        clrscr();
+        Map<String,Boolean> rightsOnUsers = curUser.role.rightsOnUsers;     //get the rights on Users
+        //Create a String with all the Rights
+        String rightsUsersStr = "";
+        int i = 1;
+        for (Map.Entry<String, Boolean> entry : rightsOnUsers.entrySet()) {
+            if (entry.getValue()) {
+                rightsUsersStr += (i + ". " + entry.getKey() + "\n");
+                i++;
+            }
+        }
+        showExpBox(rightsUsersStr);
 
-    default void viewChatsScreen() {
+//        showExpBox("Search for a user");
+        String userSearch = sc.nextLine();
     }
 
     default void viewSingleChatScreen() {

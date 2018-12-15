@@ -1,17 +1,22 @@
 package ChatApp.db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class Database2 {
-    private static Class dbClass;
-    private String server = "localhost:3306";
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String PREFACE = "jdbc:mysql://";
-    private String database = "chat02";
-    private String username = "mitsos";
-    private String password = "kiriosmitsos";
-    private String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
-    private String urlDB;
+public class DB {
+    protected static Class dbClass;
+    protected String server = "localhost:3306";
+    protected static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    protected static final String PREFACE = "jdbc:mysql://";
+    protected String database = "chat02";
+    protected String username = "root";
+    protected String password = "kiriosroot";
+    protected String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
+    protected String urlDB;
 
  //Method create URL for connecting
  public void createURL(){

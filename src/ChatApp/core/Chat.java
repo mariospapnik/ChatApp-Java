@@ -4,9 +4,14 @@ import java.util.Date;
 
 //USER CHAT
 public class Chat {
-    private User creatorUser;
-    private int id;
-    private String chatName;
-    private Date chat_date = new Date();
+    public int id;
+    public int creatorUserID;
+    public String chatName;
+    public String msgTableName;
+    public Date chatDate;
+
+    public Chat(int id){
+        this.id = id;
+    }
 
 }

@@ -5,6 +5,11 @@ package ChatApp.core;
 
 import ChatApp.ui.UI;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class User implements UI {
     public Role role;
     public int roleID;
@@ -16,7 +21,7 @@ public class User implements UI {
 //    private int role_id;
 //    private Date regDate;
 //    private boolean active;
-//    private Chat[] chats;
+    public ArrayList<Chat> chats = new ArrayList<>();
 
     public User() { }
 
@@ -24,18 +29,15 @@ public class User implements UI {
         this.id = id;
     }
 
-    public void setUser(int id) {
-//        db.setUser(id);
+    public void setRoleRights(){
+        role = new Role(roleID);    //set the role id and create the new Role inside the curUser
     }
 
+    public void getChats() {
+        db.readUserChats(this);
+    }
     public void accessError(){
         System.out.println("Not allowed!");
-    }
-
-    public String[] userRights(int userID) {
-        String[] rights = null;
-        role = new Role(this.id, db);
-        return rights;
     }
 
 }
