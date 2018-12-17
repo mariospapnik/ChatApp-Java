@@ -1,144 +1,122 @@
 package ChatApp.db;
 
-import ChatApp.core.Chat;
-import ChatApp.core.Role;
-import ChatApp.core.User;
-
 import java.sql.*;
+import java.util.*;
 
-public class Database extends DB{
+public class Database {
+    protected static Class dbClass;
+    protected String server = "localhost:3306";
+    protected static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    protected static final String PREFACE = "jdbc:mysql://";
+    protected String database = "chat02";
+    protected String username = "root";
+    protected String password = "kiriosroot";
+    protected String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
+    protected String urlDB;
 
-    public Database(){
-        registerDriver();
-        createURL();
-    }
+ //Method create URL for connecting
+ public void createURL(){
+     urlDB = ( PREFACE + server + "/" + database + options);
+ }
 
-public int checkUser(String username){
-    int userID = 0;
-    Connection conn = createConnection();
-    Statement st = null;
-    ResultSet rs = null;
-    String query = "SELECT * FROM `users` WHERE `username` = \'" +username + "\';";
+public void registerDriver() {
     try {
-        st = conn.createStatement();
-        rs = st.executeQuery(query);
-        while(rs.next()){
-            userID = rs.getInt(1);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-    return userID;
-}
-
-public boolean checkPass(int userID, String pass){
-    boolean userAuth = false;
-    int newID = 0;
-    Connection conn = createConnection();
-    Statement st = null;
-    ResultSet rs = null;
-    String query = "SELECT * FROM `users` WHERE `id` = '" +userID + "' AND `pass` = '"+ pass+"';";
-    try {
-        st = conn.createStatement();
-        rs = st.executeQuery(query);
-        while(rs.next()){
-            newID = rs.getInt(1);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-    return newID != 0;
-}
-public void setUser(User curUser){
-    Connection conn = createConnection();
-    Statement st = null;
-    ResultSet rs = null;
-    String query =  "SELECT * FROM `users` "+
-            "WHERE `id` = '" + curUser.id + "';";
-    try {
-        st = conn.createStatement();
-        rs = st.executeQuery(query);
-        while(rs.next()){
-            curUser.id = rs.getInt("id");
-            curUser.username = rs.getString("username");
-            curUser.roleID = rs.getInt("role_id");
-        }
-    } catch (SQLException e) {
+        Class.forName(DRIVER);
+    } catch (ClassNotFoundException e) {
+        System.out.println("Driver not registered!");
         e.printStackTrace();
     }
 }
 
-public Role readRole(Role role){
-    Connection conn = createConnection();
-    Statement st = null;
-    ResultSet rs = null;
-    String query =  "SELECT * FROM `roles` "+
-                    "WHERE `id` = '" + role.id+ "';";
-    try {
-        st = conn.createStatement();
-        rs = st.executeQuery(query);
+ //Method creating connection to DB
+public Connection createConnection(){
+    Connection conn = null;
+    registerDriver();
+    createURL();
 
-        while(rs.next()){
-            role.name = rs.getString(1);
-            role.canCreateUser = rs.getBoolean("can_create_user");
-            role.canCreateChat = rs.getBoolean("can_create_chat");
-            role.canSendMsg = rs.getBoolean("can_send_msg");
-            role.canReadMsg = rs.getBoolean("can_view_msgs");
-        }
+    try {
+        conn = DriverManager.getConnection(urlDB,username,password);
     } catch (SQLException e) {
         e.printStackTrace();
     }
 
-    return role;
+//    System.out.println((conn != null)?"You made it, take control your database now!":"Failed to make connection!");
+
+    return conn;
 }
 
-public int createUser(String username, String pass) {
-    Connection conn = createConnection();
+//Method execute UPDATE or INSERT
+public int execUpdateInsert(Connection conn, String query) {
+    PreparedStatement prestm = null;
+    int rowsAffected = 0;
+
+    try {
+        prestm = conn.prepareStatement(query);
+        rowsAffected = prestm.executeUpdate(query);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return rowsAffected;
+}
+
+//Method execute SELECT
+public ResultSet execSelect(Connection conn, String query) {
+    ResultSet rs = null;
+    Statement st = null;
+    try {
+        st = conn.createStatement();
+        rs = st.executeQuery(query);
+    }
+    catch (SQLException | NullPointerException ex) {
+        System.out.println("Execute query did not work!");
+    }
+    return rs;
+}
+
+public ResultSet execPrepSelect(Connection conn, String query, Map<String,String> paramMap) {
+    Connection conn2 = createConnection();
+    ResultSet rs = null;
     PreparedStatement prest = null;
-    int rowsInserted = 0;
-    String query =  "INSERT INTO `users` (`username`,`pass`,`role_id`)"+
-                    "VALUES (?,?,?);";
+
     try {
-        prest = conn.prepareStatement(query);
-        prest.setString(1,username);
-        prest.setString(2,pass);
-        prest.setInt(3,2);  //create a user with reader role
-        rowsInserted = prest.executeUpdate();
+        prest = conn2.prepareStatement(query);
+//        prest.setString();
+//        rs = st.executeQuery(query);
+    }
+    catch (SQLException | NullPointerException ex) {
+        System.out.println("Execute query did not work!");
+    }
+    return rs;
+}
+
+public Collection<Map<String,Object>> getGenericSelect(String query) {
+    Connection con = createConnection();
+    Statement st = null;
+    ResultSet rs = null;
+    Collection<Map<String,Object>> answer = new ArrayList<>();
+
+    try {
+        st = con.createStatement();
+        rs = st.executeQuery(query);
+        ResultSetMetaData rsmd = rs.getMetaData();
+
+        while (rs.next()) {
+            Map<String,Object> eachRow = new HashMap<>();
+            for (int i = 1; i <= rsmd.getColumnCount(); i++)
+                eachRow.put(rsmd.getColumnName(i), rs.getObject(i));
+            answer.add(eachRow);
+         }
+
+        rs.close();
+        con.close();
+
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    return rowsInserted;
 
+    return answer;
 }
 
-   public void readUserChats(User curUser){
-       Connection conn = createConnection();
-       PreparedStatement prest = null;
-       ResultSet rs = null;
-
-        String query = new StringBuilder()
-            .append("SELECT `chats`.`id`,`chats`.`name`,`chats`.`tb_name` FROM `chats`\n")
-            .append("INNER JOIN `chat_users`\n")
-            .append("ON `chats`.`id` = `chat_users`.`chat_id`\n")
-            .append("WHERE `chat_users`.`user_id`= ?;").toString();
-
-       try {
-           prest = conn.prepareStatement(query);
-           prest.setInt(1,curUser.id);
-           rs = prest.executeQuery();
-           while(rs.next()){
-               Chat chat = new Chat(rs.getInt("id"));
-//               System.out.println(rs.getInt("id") + rs.getString("name") + rs.getString("tb_name"));
-               chat.chatName = rs.getString("name");
-               chat.msgTableName = rs.getString("tb_name");
-               curUser.chats.add(chat);
-           }
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }
-   }
 
 
 }

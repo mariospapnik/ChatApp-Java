@@ -1,8 +1,6 @@
 package ChatApp.core;
 
-import ChatApp.db.Database;
 import ChatApp.ui.UI;
-
 import java.util.HashMap;
 import java.util.Map;
 

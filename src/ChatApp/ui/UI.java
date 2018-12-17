@@ -1,12 +1,10 @@
 package ChatApp.ui;
 
 import ChatApp.core.Chat;
+import ChatApp.core.Msg;
 import ChatApp.core.User;
-import ChatApp.db.Database;
-import com.sun.deploy.uitoolkit.ui.ConsoleController;
-import com.sun.deploy.uitoolkit.ui.ConsoleWindow;
+import ChatApp.db.DAOall;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
@@ -15,7 +13,7 @@ import java.util.Scanner;
 public interface UI {
 
     Scanner sc = new Scanner(System.in);
-    Database db = new Database();
+    DAOall db = new DAOall();
 
     default void startChatApp() {
         mainScreen();
@@ -55,19 +53,29 @@ public interface UI {
         if (userID!=0) {
             clrscr();
             showExpBox("Enter\npassword");
-            String pass = sc.nextLine();
-            boolean isPassCorrect = db.checkPass(userID, pass); // Check if the Password is correct
 
-            if (isPassCorrect) {
-                User curUser = new User(userID);    //create the user
-                db.setUser(curUser);      //Populate the user data from the DB
-                clrscr();
-                showExpBox("Logged in as\n"+curUser.username+"\n \nPress any key...");
-                sc.nextLine();
-                userScreen(curUser);
+            int tries = 0;
+            while(tries<3) {
+                String pass = sc.nextLine();
+                boolean isPassCorrect = db.checkPass(userID, pass); // Check if the Password is correct
+                if (isPassCorrect) {
+                    User curUser = new User(userID);    //create the user
+                    db.setUser(curUser);      //Populate the user data from the DB
+                    clrscr();
+                    showExpBox("Logged in as\n" + curUser.username + "\n \nPress any key...");
+                    sc.nextLine();
+                    userScreen(curUser);
+                    break;
+                } else {
+                    clrscr();
+                    showExpBox("Wrong Password!\n"+(3-tries)+" tries remaining!");
+                    tries++;
+                }
             }
-//
-
+        }
+        else {
+            showExpBox("User does not exist!\nPress any key.");
+            sc.nextLine();
         }
     }
 
@@ -140,15 +148,18 @@ public interface UI {
     default void viewChatsScreen(User curUser) {
         clrscr();
         StringBuilder chatsStr = new StringBuilder().append("Chats for:"+curUser.username +"\n");
-        System.out.println(curUser.chats.size());
-        for(Chat chat : curUser.chats){
-            chatsStr.append(chat.id + ": " + chat.chatName + "\n");
-            System.out.println("one more!");
-        }
+
+        curUser.chats.forEach((chat)-> chatsStr.append(chat.id + ": " + chat.chatName + "\n"));
+
         chatsStr.append("Please select:");
         showExpBox(chatsStr.toString());
 
         String choice = sc.nextLine();
+        int numChoice = Integer.parseInt(choice);
+
+        if(numChoice>=1 && numChoice<= curUser.chats.size()){
+            viewSingleChatScreen(curUser, curUser.chats.get(numChoice));
+        }
 
     }
 
@@ -170,7 +181,13 @@ public interface UI {
         String userSearch = sc.nextLine();
     }
 
-    default void viewSingleChatScreen() {
+    default void viewSingleChatScreen(User curUser, Chat chat) {
+        clrscr();
+        db.readChat(curUser, chat);
+        for(Msg msg: chat.msgs) {
+            showExpBox(msg.creator + ": " + msg.data);
+        }
+        sc.nextLine();
     }
 
     // Method that clears the screen
