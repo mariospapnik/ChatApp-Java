@@ -1,15 +1,12 @@
 package ChatApp;
 
-import ChatApp.ui.UI;
+import ChatApp.ui.ChatApp;
 
-public class Main implements UI{
-
-    Main(){
-    }
+public class Main {
 
     public static void main(String[] args) {
-        UI ui = new Main();
-        ui.startChatApp();
+
+        ChatApp.getInstance().startChatApp();
     }
 
 }

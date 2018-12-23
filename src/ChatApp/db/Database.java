@@ -1,7 +1,16 @@
 package ChatApp.db;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Database {
     protected static Class dbClass;
@@ -11,7 +20,7 @@ public class Database {
     protected String database = "chat02";
     protected String username = "root";
     protected String password = "kiriosroot";
-    protected String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
+    protected String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true";
     protected String urlDB;
 
  //Method create URL for connecting
@@ -115,6 +124,54 @@ public Collection<Map<String,Object>> getGenericSelect(String query) {
     }
 
     return answer;
+}
+
+public int genericInsert(String table, String[] fields, String[][] values){
+
+    Connection con = createConnection();
+    Statement st = null;
+    int rowsInserted = 0;
+
+    StringBuilder query = new StringBuilder()
+             .append("INSERT INTO `" + table + "` (");
+
+
+     for (int  i=0; i< fields.length; i++) {
+         query.append("`" + fields[i] + "`");
+         if (i< (fields.length-1)) {
+             query.append(",");
+         }
+     }
+     query.append(") VALUES ");
+
+     for (int  i=0; i< values.length; i++) {
+         query.append("(");
+
+         for (int  j=0; j< values[i].length; j++) {
+             query.append("`" + values[i][j] + "`");
+             if (j< (values[i].length-1)) {
+                 query.append(",");
+             }
+         }
+         if (i< (values[i].length-1)) {
+             query.append(") ,");
+         }
+         else {
+             query.append(");");
+         }
+     }
+
+    try {
+        st = con.createStatement();
+        rowsInserted = st.executeUpdate(query.toString());
+        con.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return rowsInserted;
+
+
 }
 
 
