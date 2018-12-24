@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="ChatApp-Java:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ChatApp_Java_jar</output-path>
+    <root id="root">
+      <element id="archive" name="ChatApp-Java.jar">
+        <element id="module-output" name="ChatApp-Java" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/../../../Libs/mysql-connector-java-8.0.13.jar" />
+      <element id="library" level="application" name="Libs" />
+    </root>
+  </artifact>
+</component>
