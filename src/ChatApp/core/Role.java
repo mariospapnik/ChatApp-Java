@@ -1,7 +1,5 @@
 package ChatApp.core;
 
-import ChatApp.db.RoleDAO;
-import ChatApp.db.UserDAO;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,13 +18,13 @@ public class Role {
 
     public Role(int id){
         this.id  = id;
-        this.readRole();
+//        this.readRole();
     }
 
-    private void readRole() {
-       RoleDAO roleDao = RoleDAO.getInstance();
-        roleDao.readRole(this);
-    }
+//    private void readRole() {
+//       RoleDAO roleDao = RoleDAO.getInstance();
+//        roleDao.readRole(this);
+//    }
 
     public int getID(){
         return id;
@@ -34,7 +32,19 @@ public class Role {
 
     public void setID(int id){
         this.id = id;
-        this.readRole();  //updates the role again!
+//        this.readRole();  //updates the role again!
+    }
+
+    public Boolean getUserRight(String right){
+        return rightsOnUsers.get(right);
+    }
+
+    public Boolean getChatsRight(String right){
+        return rightsOnChats.get(right);
+    }
+
+    public Boolean getMsgsRight(String right){
+        return rightsOnMsgs.get(right);
     }
 
     public String getRoleName(){

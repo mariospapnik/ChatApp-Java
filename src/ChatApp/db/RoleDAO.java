@@ -81,7 +81,9 @@ public class RoleDAO extends Database {
         answer = getGenericSelect(query);
 
         for (Map<String,Object> row: answer){
-            roleNames.put((Integer) row.get("id"), (String) row.get("name"));
+            System.out.println("ONE MORE!!!");
+//            roleNames.put( (int) row.get("id"), String.valueOf(row.get("name")));
+            System.out.println("TWO MORE!!!");
         }
     }
 }

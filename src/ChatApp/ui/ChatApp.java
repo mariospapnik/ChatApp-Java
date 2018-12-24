@@ -2,34 +2,37 @@ package ChatApp.ui;
 
 import ChatApp.core.Chat;
 import ChatApp.core.Msg;
+import ChatApp.core.Role;
 import ChatApp.core.User;
-import ChatApp.db.ChatDAO;
-import ChatApp.db.MsgDAO;
-import ChatApp.db.RoleDAO;
-import ChatApp.db.UserDAO;
+import ChatApp.db.*;
 import ChatApp.menu.Menu;
-import ChatApp.menu.MenuItem;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class ChatApp extends UI {
 
     public static ChatApp chatApp = null;
-    Scanner sc = new Scanner(System.in);
-    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-    User curUser = null;
-    HashMap<Integer, User> users = null;
-    HashMap<Integer, String> roleNames = null;
+    public static Scanner sc = new Scanner(System.in);
+    public static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    public static User curUser = null;
+    public static Role curRole = null;
+    public static HashMap<Integer, User> users = null;
+    public static HashMap<Integer, String> roleNames = null;
 
-    RoleDAO roleDAO = RoleDAO.getInstance();
-    UserDAO userDao = UserDAO.getInstance();
-    ChatDAO chatDao = ChatDAO.getInstance();
-    MsgDAO msgDao = MsgDAO.getInstance();
+    public static RoleDAO roleDao = RoleDAO.getInstance();
+    public static UserDAO userDao = UserDAO.getInstance();
+    public static ChatDAO chatDao = ChatDAO.getInstance();
+    public static ChatUsersDAO chatUsersDao = ChatUsersDAO.getInstance();
+    public static MsgDAO msgDao = MsgDAO.getInstance();
+
+    public static Menu mainMenu = new Menu("ChatApp", "main menu");
+    public static Menu singleUserMenu = new Menu("User Menu", "User actions");
+    public static Menu usersMenu = new Menu("Users Menu", "Find users");
+    public static Menu editUserMenu = new Menu("Edit User", "Edit");
+    public static Menu chatsMenu = new Menu("Chats Menu", "Chats actions");
+    public static Menu singleChatMenu = new Menu("Chat Menu", "view Msgs");
 
 
     private ChatApp(){ }
@@ -42,22 +45,104 @@ public class ChatApp extends UI {
 
     //entry point
     public void startChatApp() {
-        mainMenu();
+        execMainMenu();
     }
 
 //    method to display the main screen
-    private void mainMenu() {
-        Menu menu = new Menu();
-        menu.setTitle("Chat App");
-        if(curUser == null){
-            menu.addItem(new MenuItem("Log in", ChatApp.getInstance() , "login"));
-            menu.addItem(new MenuItem("Sign up", ChatApp.getInstance() , "signUp"));
+    private void execMainMenu() {
+        clrscr();
+        mainMenu.clearActions();
+
+        if(curUser == null) {
+            mainMenu.putAction("Log in",()-> login());
+            mainMenu.putAction("Sign up",()-> signUp());
         }
         else {
-            menu.addItem(new MenuItem("Log out", ChatApp.getInstance(), "logout"));
+            mainMenu.putAction("User menu", () -> execSingleUserMenu());
+            mainMenu.putAction("Log out", () -> logout());
         }
-        menu.execute();
+        mainMenu.putAction("Exit",()-> System.exit(0));
+
+        mainMenu.activateMenu();
     }
+
+    private void execSingleUserMenu() {
+        clrscr();
+        singleUserMenu.clearActions();
+
+        singleUserMenu.putAction("Users", ()-> execUsersMenu() );
+        singleUserMenu.putAction("Chats", () -> execChatsMenu() );
+
+        if (curUser.getRole().getUserRight("canEditSelf"))
+            usersMenu.putAction("Edit my profile", () -> editProfile() );
+
+        singleUserMenu.putAction("Back to Main Menu",()-> execMainMenu() );
+        singleUserMenu.putAction("Exit",()-> System.exit(0));
+
+        singleUserMenu.activateMenu();
+    }
+
+    private void execUsersMenu() {
+        clrscr();
+        usersMenu.clearActions();
+
+        if (curRole.getUserRight("canSearchUser")) {
+            usersMenu.putAction("Search for a user", () -> searchUser() );
+            usersMenu.putAction("View all users", () -> viewAllUsers() );
+        }
+
+        usersMenu.putAction("Back to profile view",()-> execMainMenu() );
+        usersMenu.putAction("Exit",()-> System.exit(0));
+
+        usersMenu.activateMenu();
+    }
+
+    private void execEditUserMenu() {
+        clrscr();
+        editUserMenu.clearActions();
+
+        if(curRole.getUserRight("canToogleUser"))
+            editUserMenu.putAction("Enable/Disable user", ()-> toggleUser(users.get(2)));
+
+        if(curRole.getUserRight("canChangeUserType"))
+            editUserMenu.putAction("Change user type", ()-> changeUserType(users.get(2)) );
+
+        if(curRole.getUserRight("canChangeUserType"))
+            editUserMenu.putAction("Edit user's fname and Lname", ()-> editUserFLName(users.get(2)) );
+
+        editUserMenu.putAction("Exit",()-> System.exit(0));
+
+        editUserMenu.activateMenu();
+
+    }
+
+
+    private void execChatsMenu() {
+
+        clrscr();
+        chatsMenu = new Menu("Chats for " + curUser.getUsername(), "Select a chat");
+        chatsMenu.clearActions();
+
+        chatDao.readUserChats(curUser);     //Get the chats of the current user
+
+        chatsMenu.putAction("Create Chat", ()-> createChat() );
+        curUser.chats.forEach((chat)-> {
+            StringBuilder title = new StringBuilder()
+                    .append("Chat " + chat.chatName + "\t with: ");
+            for (int id : chat.usersIDs) {
+                title.append(users.get(id).getUsername() + " ");
+            }
+            chatsMenu.putAction( title.toString() , ()-> viewSingleChat(chat) );
+        });
+
+        chatsMenu.putAction("Back to profile view", ()-> execSingleUserMenu() );
+
+        chatsMenu.putAction("Exit",()-> System.exit(0));
+
+        chatsMenu.activateMenu();
+
+    }
+
 
     public void login() {
         clrscr();
@@ -78,16 +163,13 @@ public class ChatApp extends UI {
                 boolean isPassCorrect = userDao.checkPass(userID, pass); // Check if the Password is correct
                 if (isPassCorrect) {
                     curUser = new User(userID);    //create the user
-                    users = userDao.selectAllUsers();
-                    roleDAO.selectRoleNames(roleNames);
-                    curUser = users.get(userID);
-//                    userDao.setUser(curUser);      //Populate the user data from the DB
+                    users = userDao.selectAllUsers();   //get all the users
+                    curUser = users.get(userID);    //set the current user according to ID
+                    roleDao.selectRoleNames(roleNames); //set the rolenames
+                    curRole =  roleDao.readRole(curUser.getRole()); //set the curUser role
                     clrscr();
-                    showExpBox("Logged in as\n" + curUser.getUsername() + "\n \nPress any key...");
-                    sc.nextLine();
-                    userMenu();
-//                    userScreen(curUser);
-                    break;
+                    pauseExecution("Logged in as\n" + curUser.getUsername() + "\n \nPress any key.");
+                    execSingleUserMenu();
                 } else {
                     clrscr();
                     showExpBox("Wrong Password!\n"+(3-tries)+" tries remaining!");
@@ -96,12 +178,19 @@ public class ChatApp extends UI {
             }
         }
         else {
-            showExpBox("User does not exist!\nPress any key.");
-            sc.nextLine();
+            pauseExecution("User does not exist!\nPress any key.");
+            execMainMenu();
         }
+        execMainMenu();
+    }
+
+    public void logout() {
+        curUser = null;
+        execMainMenu();
     }
 
     public void signUp() {
+
         String username;
         String pass;
         clrscr();
@@ -119,6 +208,7 @@ public class ChatApp extends UI {
             }
         }
         clrscr();
+
         //password input
         showExpBox(username + "\n Enter password");
         while(true) {
@@ -141,45 +231,10 @@ public class ChatApp extends UI {
             }
         }
 
-    }
-
-    public void userMenu(){
-        clrscr();
-        curUser.setRoleRights();
-        Menu menu = new Menu();
-        menu.setTitle("User Menu");
-        menu.addItem(new MenuItem("Users", ChatApp.getInstance() , "usersMenu"));
-        menu.addItem(new MenuItem("Chats", ChatApp.getInstance() , "chatsMenu"));
-        menu.execute();
-    }
-
-    public void chatsMenu() {
-        clrscr();
-
-        Menu menu = new Menu();
-        menu.setTitle("Chats for " + curUser.getUsername() );
-        menu.addItem(new MenuItem("Create Chat", ChatApp.getInstance() , "createChat"));
-        chatDao.readUserChats(curUser);
-        curUser.chats.forEach((chat)-> {
-            StringBuilder title = new StringBuilder()
-                    .append("Chat " + chat.chatName + "\t with: ");
-            for (int id : chat.usersIDs) {
-                title.append(users.get(id).getUsername() + " ");
-            }
-            menu.addItem(new MenuItem( title.toString() ,ChatApp.getInstance(), "viewSingleChat", chat ));
-        });
-        menu.execute();
+        execMainMenu();
 
     }
 
-    public void usersMenu(){
-        clrscr();
-        Menu menu = new Menu();
-        menu.setTitle("Users Look up");
-        menu.addItem(new MenuItem("Search for a user", ChatApp.getInstance() , "searchUser"));
-        menu.addItem(new MenuItem("View All users", ChatApp.getInstance() , "viewAllUsers"));
-        menu.execute();
-    }
 
     public void searchUser() {
         clrscr();
@@ -201,6 +256,7 @@ public class ChatApp extends UI {
         System.out.println(userPrint.toString());
 //        showExpBox(userPrint.toString());
         sc.nextLine();
+        execUsersMenu();
     }
 
     public void viewAllUsers(){
@@ -210,30 +266,74 @@ public class ChatApp extends UI {
 
         System.out.println("Press any key to go back");
         sc.nextLine();
+        execUsersMenu();
     }
 
     public void viewSingleChat(Chat chat) {
         clrscr();
         chatDao.readChat(curUser, chat);
         StringBuilder chatString = new StringBuilder();
-        chatString.append("Chat: " + chat.chatName + "\n\n");
+        chatString.append("-- Chat: " + chat.chatName + "--\n\n");
         for(Msg msg: chat.msgs) {
-            chatString.append(msg.id + "> " + msg.creator + "( date ) :\n\t" + msg.data + "\n\n");
+            chatString.append(msg.id + "> " + users.get(msg.creator).getUsername() + "( date ) :\n\t" + msg.data + "\n\n");
         }
 
-        showExpBox(chatString.toString());
+        System.out.println(chatString.toString());
         sc.nextLine();
+        execChatsMenu();
     }
 
-    public void createChat(){
+    public void createChat() {
         clrscr();
-        Chat chat = new Chat();
-        System.out.println("Enter chat name");
-        String chatName  = sc.nextLine();
-        chat.chatName = chatName;
+        int chatInserted;
+        int msgsTableCreated;
+        int chatUsersInserted;
 
-        System.out.println("Select users");
-        ArrayList<User> usersList = (ArrayList) users.values();
+        Chat chat = new Chat();     //create the new chat object
+        chat.creatorUserID = curUser.getID();   //set the creator id for the chat
+        String chatName;
+        while (true) {
+            System.out.println("Enter chat name:");
+            chatName = sc.nextLine();
+            if (requestConfirmation("Proceed with '" + chatName + "' as the name of the Chat? (y/n) ")) break;
+        }
+        chat.chatName = chatName;
+        chatInserted = chatDao.createChat(chat);    //create the chat in db
+        if (chatInserted==1) {
+            msgsTableCreated = msgDao.createMsgTable(chat); //if the chat was created create the msg table
+            ArrayList<User> usersSelected = selectUsers();
+            chatUsersInserted =  chatUsersDao.insertChatUsers(chat, usersSelected);
+        }
+
+        execChatsMenu();
+    }
+
+    public void editProfile() {
+        System.out.println("Not yet implemented. Press any key to go back!");
+        sc.nextLine();
+        execSingleUserMenu();
+    }
+
+
+
+    public void toggleUser(User user) {
+        notYetImplemented();
+    }
+
+    public void changeUserType(User user) {
+        notYetImplemented();
+    }
+
+    public void editUserFLName(User user) {
+        notYetImplemented();
+    }
+
+
+    public ArrayList<User> selectUsers() {
+
+        ArrayList<User> usersList = new ArrayList<>();
+        usersList.addAll(users.values());
+        ArrayList<User> selectedUsers = new ArrayList<>();
 
         while(true) {
 
@@ -245,10 +345,10 @@ public class ChatApp extends UI {
 
             String input =  sc.nextLine();
             try {
-                int usertoAdd = Integer.parseInt(input);
+                int usertoAdd = Integer.parseInt(input) -1 ;
 
                 if ( (usertoAdd > 0) && (usertoAdd < usersList.size()) ) {
-                    chat.usersIDs.add(usersList.get(usertoAdd).getID());
+                    selectedUsers.add( usersList.get(usertoAdd) );
                 }
                 else {
                     System.out.println("Not a valid user");
@@ -258,19 +358,17 @@ public class ChatApp extends UI {
                 System.out.println("Not a number!");
             }
 
-            if (!UI.requestConfirmation("Do you want to continue adding users? (y/n)..")) break;
+            if (!requestConfirmation("Do you want to continue adding users? (y/n)..")) break;
         }
 
-        ArrayList<String> fields = new ArrayList<>();
-        fields.add("name");
-        fields.add("user_id");
+        return selectedUsers;
 
-        ArrayList<String> values;
+    }
 
-        chatDao.createChat(chat, fields , curUser.getID() );
-        chatsUsersDAO.insertUsers(chat);
-
-
+    public void notYetImplemented() {
+        System.out.println("Not yet implemented. Press any key to go back!");
+        sc.nextLine();
+        execEditUserMenu();
     }
 
 }

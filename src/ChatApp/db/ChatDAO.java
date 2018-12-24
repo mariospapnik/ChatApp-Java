@@ -4,6 +4,7 @@ import ChatApp.core.Chat;
 import ChatApp.core.Msg;
 import ChatApp.core.User;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -31,10 +32,12 @@ public class ChatDAO extends Database {
         Collection<Map<String,Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
 
+        curUser.chats.clear();
         for (Map<String,Object> row: answer){
             Chat chat = new Chat(Integer.parseInt(row.get("id").toString()));
             chat.chatName = (String) row.get("name");
             chat.msgTableName = (String) row.get("tb_name");
+
             curUser.chats.add(chat);
         }
 
@@ -76,9 +79,48 @@ public class ChatDAO extends Database {
 
     }
 
-    public void createChat(Chat chat) {
-        genericInsert(chat.chatName, );
-        MsgDAO msgDAO = MsgDAO.getInstance();
-        msgDAO.createMsgTable();
+    public int createChat(Chat chat) {
+        Connection conn = createConnection();
+        PreparedStatement prest = null;
+        Statement st = null;
+        ResultSet rs = null;
+        String querySelect = "SELECT * FROM `chats` WHERE `id`=(SELECT MAX(`id`) FROM `chats`);";
+
+        int rowsInserted = 0;
+        String query =  "INSERT INTO `chats` (`name`,`user_id`)"+
+                "VALUES (?,?);";
+
+        String query2 =  "UPDATE `chats` SET `tb_name` = ? "+
+                "WHERE `id` = ?;";
+
+        try {
+            prest = conn.prepareStatement(query);
+            prest.setString(1,chat.chatName);
+//            prest.setString(2,chat.msgTableName);
+            prest.setInt(2,chat.creatorUserID);
+            rowsInserted = prest.executeUpdate();
+            prest.close();
+
+            st = conn.createStatement();
+            rs = st.executeQuery(querySelect);
+            rs.first();
+            int newid = rs.getInt("id");
+            chat.msgTableName = "msgs"+newid;
+            chat.id = newid;
+            rs.close();
+            st.close();
+
+            prest = conn.prepareStatement(query2);
+            prest.setString(1,chat.msgTableName);
+            prest.setInt(2,chat.id);
+            prest.executeUpdate();
+            prest.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rowsInserted;
     }
 }

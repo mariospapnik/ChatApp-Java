@@ -126,7 +126,7 @@ public Collection<Map<String,Object>> getGenericSelect(String query) {
     return answer;
 }
 
-public int genericInsert(String table, String[] fields, String[][] values){
+public int genericInsert(String table, ArrayList<String> fields, ArrayList<String[]> values){
 
     Connection con = createConnection();
     Statement st = null;
@@ -136,24 +136,24 @@ public int genericInsert(String table, String[] fields, String[][] values){
              .append("INSERT INTO `" + table + "` (");
 
 
-     for (int  i=0; i< fields.length; i++) {
-         query.append("`" + fields[i] + "`");
-         if (i< (fields.length-1)) {
+     for (int  i=0; i< fields.size(); i++) {
+         query.append("`" + fields.get(i) + "`");
+         if (i< (fields.size()-1)) {
              query.append(",");
          }
      }
      query.append(") VALUES ");
 
-     for (int  i=0; i< values.length; i++) {
+     for (int  i=0; i< values.size(); i++) {
          query.append("(");
 
-         for (int  j=0; j< values[i].length; j++) {
-             query.append("`" + values[i][j] + "`");
-             if (j< (values[i].length-1)) {
+         for (int  j=0; j< values.get(i).length; j++) {
+             query.append("`" + values.get(i)[j] + "`");
+             if (j< (values.get(i).length-1)) {
                  query.append(",");
              }
          }
-         if (i< (values[i].length-1)) {
+         if (i< (values.get(i).length-1)) {
              query.append(") ,");
          }
          else {
@@ -161,13 +161,15 @@ public int genericInsert(String table, String[] fields, String[][] values){
          }
      }
 
-    try {
-        st = con.createStatement();
-        rowsInserted = st.executeUpdate(query.toString());
-        con.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
+    System.out.println(query);
+
+//    try {
+//        st = con.createStatement();
+//        rowsInserted = st.executeUpdate(query.toString());
+//        con.close();
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
 
     return rowsInserted;
 

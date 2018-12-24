@@ -26,6 +26,7 @@ public class User{
     public Role getRole(){
         return role;
     }
+
     public  void setRole(Role role){
         this.role = role;
         roleID = role.getID();
@@ -38,6 +39,10 @@ public class User{
     public void setRoleID(int roleID){
         this.roleID = roleID;
         role = new Role(roleID);    //update the role when the id is updated!!
+    }
+
+    public void setRoleRights(){
+        role = new Role(roleID);    //set the role id and create the new Role inside the curUser
     }
 
     public int getID(){
@@ -80,9 +85,7 @@ public class User{
         this.active = active;
     }
 
-    public void setRoleRights(){
-        role = new Role(roleID);    //set the role id and create the new Role inside the curUser
-    }
+
 
     public void getChats() {
         ChatDAO.getInstance().readUserChats(this);
