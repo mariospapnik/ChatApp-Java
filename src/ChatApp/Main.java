@@ -1,6 +1,6 @@
 package ChatApp;
 
-import ChatApp.ui.ChatApp;
+import ChatApp.app.ChatApp;
 
 public class Main {
 
