@@ -27,7 +27,7 @@ public class ChatUsersDAO  extends Database {
         fields.add("user_id");
 
         for (User user: usersToInsert) {
-            String[] rowValues = {String.valueOf(chat.id), String.valueOf(user.getID())};
+            String[] rowValues = {String.valueOf(chat.getId()), String.valueOf(user.getID())};
             values.add(rowValues);
         }
 

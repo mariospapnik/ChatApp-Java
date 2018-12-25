@@ -3,11 +3,13 @@ package ChatApp.db;
 import ChatApp.core.Chat;
 import ChatApp.core.Msg;
 import ChatApp.core.User;
+import ChatApp.ui.UI;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Scanner;
 
 public class ChatDAO extends Database {
 
@@ -24,103 +26,113 @@ public class ChatDAO extends Database {
     public void readUserChats(User curUser){
 
         String query = new StringBuilder()
-                .append("SELECT `chats`.`id`,`chats`.`name`,`chats`.`tb_name` FROM `chats`\n")
-                .append("INNER JOIN `chat_users`\n")
-                .append("ON `chats`.`id` = `chat_users`.`chat_id`\n")
-                .append("WHERE `chat_users`.`user_id`= '"+ curUser.getID() + "';").toString();
+                .append("SELECT `chats`.`id`,")
+                .append(" `chats`.`title` , ")
+                .append(" `chats`.`user_id` FROM `chats`")
+                .append("INNER JOIN `chats_users`\n")
+                .append( "ON `chats`.`id` = `chats_users`.`chat_id`\n")
+                .append("WHERE `chats_users`.`user_id`= '" + curUser.getID() + "';").toString();
 
         Collection<Map<String,Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
 
-        curUser.chats.clear();
+        curUser.getChats().clear();
         for (Map<String,Object> row: answer){
-            Chat chat = new Chat(Integer.parseInt(row.get("id").toString()));
-            chat.chatName = (String) row.get("name");
-            chat.msgTableName = (String) row.get("tb_name");
+            Chat chat = new Chat( (Integer) row.get("id") );
+            chat.setChatName( (String) row.get("title") );
+            chat.setCreatorUserID( (Integer) row.get("user_id") );
 
-            curUser.chats.add(chat);
+            curUser.getChats().add(chat);
         }
 
     }
 
-    public void readChat(User curUser, Chat chat){
 
-        String query = new StringBuilder()
-                .append("SELECT `chats`.`id`,`chats`.`name`,`chats`.`tb_name` FROM `chats`\n").toString();
+    public void readUsersOfChats(User curUser) {
+        curUser.getChats().forEach((chat) -> readUsersOfChat(chat) );
+    }
 
-        //SELECT MSGS TABLE OF THE CHAT
-        String queryMsgs = "SELECT * FROM `chat02`.`"+ chat.msgTableName + "`;";
-        Collection<Map<String,Object>> answerMsgs = new ArrayList<>();
-        answerMsgs = getGenericSelect(queryMsgs);
-        System.out.println(answerMsgs.size());
-
-        for (Map<String,Object> row: answerMsgs) {
-            Msg msg = new Msg();
-            msg.id = (Integer) row.get("id");
-            msg.creator = (Integer) row.get("user_id");
-//            msg.sentDate = Date.row.get("sent_date");
-            msg.data = (String) row.get("msg");
-            chat.msgs.add(msg);
-            System.out.println("ONE MORE");
-        }
-
+    public void readUsersOfChat(Chat chat){
 
         //SELECT USERS OF THE CHAT
         String queryChatUsers = new StringBuilder()
-                .append("SELECT DISTINCT `users`.`id` FROM `chat02`.`chat_users` ")
-                .append("INNER JOIN `chat02`.`users` ON `chat_users`.`chat_id` = " + chat.id + ";").toString();
+                .append("SELECT DISTINCT `user_id` FROM `chats_users` ")
+                .append("WHERE `chat_id` = " + chat.getId() + ";").toString();
+
+//        String queryChatUsers = new StringBuilder()
+//                .append("SELECT DISTINCT `users`.`id` FROM `chats_users` ")
+//                .append("INNER JOIN `users` ON `chats_users`.`chat_id` = " + chat.getId() + ";").toString();
 
         Collection<Map<String,Object>> answerChatUsers = new ArrayList<>();
         answerChatUsers = getGenericSelect(queryChatUsers);
 
+        chat.getUsersIDs().clear();
+
         for (Map<String,Object> row: answerChatUsers){
-            chat.usersIDs.add((Integer) row.get("id"));
+            chat.getUsersIDs().add((Integer) row.get("user_id"));
         }
 
     }
 
+
     public int createChat(Chat chat) {
+
         Connection conn = createConnection();
         PreparedStatement prest = null;
         Statement st = null;
         ResultSet rs = null;
-        String querySelect = "SELECT * FROM `chats` WHERE `id`=(SELECT MAX(`id`) FROM `chats`);";
 
-        int rowsInserted = 0;
-        String query =  "INSERT INTO `chats` (`name`,`user_id`)"+
+        int chatRowInserted = 0;
+        String chatInsertQuery =  "INSERT INTO `chats` (`title`,`user_id`)"+
                 "VALUES (?,?);";
 
-        String query2 =  "UPDATE `chats` SET `tb_name` = ? "+
-                "WHERE `id` = ?;";
+        String chatSelectQuery = "SELECT * FROM `chats` ORDER BY `id` DESC LIMIT 1;";
+
+        String chatsUsersQuery =  "INSERT INTO `chats_users` (`chat_id`,`user_id`)"+
+                "VALUES (?,?);";
 
         try {
-            prest = conn.prepareStatement(query);
-            prest.setString(1,chat.chatName);
-//            prest.setString(2,chat.msgTableName);
-            prest.setInt(2,chat.creatorUserID);
-            rowsInserted = prest.executeUpdate();
+            //INSERT NEW ROW IN CHAT TABLE
+            prest = conn.prepareStatement(chatInsertQuery);
+            prest.setString(1,chat.getChatName());
+            prest.setInt(2,chat.getCreatorUserID());
+
+            chatRowInserted = prest.executeUpdate();
             prest.close();
 
-            st = conn.createStatement();
-            rs = st.executeQuery(querySelect);
-            rs.first();
-            int newid = rs.getInt("id");
-            chat.msgTableName = "msgs"+newid;
-            chat.id = newid;
-            rs.close();
-            st.close();
+            if (chatRowInserted==1) {
+                //GET THE LATEST ID FROM CHAT TABLE
+                st = conn.createStatement();
+                rs = st.executeQuery(chatSelectQuery);
+                rs.first();
+                chat.setId(rs.getInt("id"));
+                rs.close();
 
-            prest = conn.prepareStatement(query2);
-            prest.setString(1,chat.msgTableName);
-            prest.setInt(2,chat.id);
-            prest.executeUpdate();
-            prest.close();
+                //INSERT THE RELATION BETWEEN CREATOR_USER AND CHAT INTO CHATS_USERS TABLE
+                prest = conn.prepareStatement(chatsUsersQuery);
+                prest.setInt(1, chat.getId() );
+                prest.setInt(2, chat.getCreatorUserID() );
 
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return rowsInserted;
+        return chatRowInserted;
     }
 }
+
+
+//
+//    //SELECT USERS OF THE CHAT
+//    String queryChatUsers = new StringBuilder()
+//            .append("SELECT DISTINCT `users`.`id` FROM `chat02`.`chat_users` ")
+//            .append("INNER JOIN `chat02`.`users` ON `chat_users`.`chat_id` = " + chat.getId() + ";").toString();
+//
+//    Collection<Map<String,Object>> answerChatUsers = new ArrayList<>();
+//        answerChatUsers = getGenericSelect(queryChatUsers);
+//
+//                for (Map<String,Object> row: answerChatUsers){
+//        chat.getUsersIDs().add((Integer) row.get("id"));
+//        }

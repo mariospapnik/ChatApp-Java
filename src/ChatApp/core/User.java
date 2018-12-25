@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class User{
     private Role role;
-    private int roleID;
     private int id;
     private String username;
     private String fname;
@@ -15,34 +14,22 @@ public class User{
     private Timestamp regDate;
     private boolean active;
 
-    public ArrayList<Chat> chats = new ArrayList<>();
+    private ArrayList<Chat> chats = new ArrayList<>();
 
+    //CONSTRUCTORS
     public User() { }
 
     public User(int id) {
         this.id = id;
     }
-    //Getters-Setters
+
+    //GETTERS - SETTERS
     public Role getRole(){
         return role;
     }
 
-    public  void setRole(Role role){
+    public void setRole(Role role){
         this.role = role;
-        roleID = role.getID();
-    }
-
-    public int getRoleID(){
-        return roleID;
-    }
-
-    public void setRoleID(int roleID){
-        this.roleID = roleID;
-        role = new Role(roleID);    //update the role when the id is updated!!
-    }
-
-    public void setRoleRights(){
-        role = new Role(roleID);    //set the role id and create the new Role inside the curUser
     }
 
     public int getID(){
@@ -85,11 +72,14 @@ public class User{
         this.active = active;
     }
 
-
-
-    public void getChats() {
-        ChatDAO.getInstance().readUserChats(this);
+    public void setChats(ArrayList<Chat> chats) {
+        this.chats = chats;
     }
+
+    public ArrayList<Chat> getChats() {
+        return chats;
+    }
+
 
     public void accessError(){
         System.out.println("Not allowed!");

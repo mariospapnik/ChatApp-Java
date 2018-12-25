@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74485a31-4634-4d2c-b8b9-fcb0700e03d4" name="Default" comment="">
+    <list default="true" id="74485a31-4634-4d2c-b8b9-fcb0700e03d4" name="Default" comment="Update &quot;showExpBox&quot; for multiline String">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/core/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/core/Chat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/core/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/core/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/core/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/core/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/ChatDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/ChatDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/MsgDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/MsgDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/RoleDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/RoleDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/menu/ConsoleUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/menu/ConsoleUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/menu/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/menu/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/menu/MenuItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/ui/ChatApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/ui/ChatApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/ui/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/ui/UI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatApp-Java/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatApp/core/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/core/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/db/MsgDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/menu/Menu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChatApp-Java/ChatApp/ui/ChatApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatApp/core/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/core/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatApp/core/Msg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/core/Msg.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatApp/core/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/core/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatApp/db/ChatDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/db/ChatDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatApp/db/ChatUsersDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/db/ChatUsersDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatApp/db/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/db/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatApp/db/MsgDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/db/MsgDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatApp/db/RoleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/db/RoleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatApp/menu/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatApp/menu/MenuItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatApp/db/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/db/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatApp/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatApp/ui/ChatApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/ui/ChatApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatApp/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatApp/ui/UI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,67 +43,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChatApp.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChatApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ChatApp/ui/ChatApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="139" column="56" selection-start-line="139" selection-start-column="56" selection-end-line="139" selection-end-column="56" />
+            <state relative-caret-position="371">
+              <caret line="344" lean-forward="true" selection-start-line="344" selection-end-line="344" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ChatApp/ui/UI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1705#1706#0" expanded="true" />
-                <element signature="e#1737#1738#0" expanded="true" />
-                <element signature="e#2277#2278#0" expanded="true" />
-                <element signature="e#2350#2351#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatUsersDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ChatApp/db/ChatUsersDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ChatApp/db/Database.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="128" column="37" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ChatApp/menu/Menu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="48" column="29" lean-forward="true" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#545#546#0" expanded="true" />
-                <element signature="e#584#585#0" expanded="true" />
+                <element signature="e#10789#10790#0" expanded="true" />
+                <element signature="e#10824#10825#0" expanded="true" />
+                <element signature="e#10869#10870#0" expanded="true" />
+                <element signature="e#10904#10905#0" expanded="true" />
+                <element signature="e#10949#10950#0" expanded="true" />
+                <element signature="e#10984#10985#0" expanded="true" />
+                <element signature="e#13982#13983#0" expanded="true" />
+                <element signature="e#14017#14018#0" expanded="true" />
+                <element signature="e#14047#14048#0" expanded="true" />
+                <element signature="e#14082#14083#0" expanded="true" />
+                <element signature="e#14113#14114#0" expanded="true" />
+                <element signature="e#14148#14149#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -120,8 +70,8 @@
       <file leaf-file-name="Role.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Role.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+            <state relative-caret-position="391">
+              <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -132,10 +82,78 @@
       <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChatApp/core/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+            <state relative-caret-position="330">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#559#560#0" expanded="true" />
+                <element signature="e#591#592#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
+                <element signature="e#1383#1384#0" expanded="true" />
+                <element signature="e#1419#1420#0" expanded="true" />
+                <element signature="e#1440#1441#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ChatApp/db/UserDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="86">
+              <caret line="106" column="49" lean-forward="true" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatUsersDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ChatApp/db/ChatUsersDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MsgDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ChatApp/db/MsgDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Msg.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Msg.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+              <folding>
+                <element signature="e#169#170#0" expanded="true" />
+                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#227#228#0" expanded="true" />
+                <element signature="e#255#256#0" expanded="true" />
+                <element signature="e#286#287#0" expanded="true" />
+                <element signature="e#316#317#0" expanded="true" />
+                <element signature="e#359#360#0" expanded="true" />
+                <element signature="e#397#398#0" expanded="true" />
+                <element signature="e#428#429#0" expanded="true" />
+                <element signature="e#455#456#0" expanded="true" />
+                <element signature="e#495#496#0" expanded="true" />
+                <element signature="e#527#528#0" expanded="true" />
+                <element signature="e#591#592#0" expanded="true" />
+                <element signature="e#637#638#0" expanded="true" />
+                <element signature="e#677#678#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -144,8 +162,8 @@
       <file leaf-file-name="RoleDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChatApp/db/RoleDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+            <state relative-caret-position="270">
+              <caret line="82" column="55" lean-forward="true" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -156,10 +174,12 @@
       <file leaf-file-name="ChatDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChatApp/db/ChatDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="35" column="45" lean-forward="true" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+            <state relative-caret-position="63">
+              <caret line="93" column="8" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="121" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1290#1291#0" expanded="true" />
+                <element signature="e#1324#1325#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -168,12 +188,36 @@
       <file leaf-file-name="Chat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Chat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+            <state relative-caret-position="270">
+              <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#378#379#0" expanded="true" />
                 <element signature="e#406#407#0" expanded="true" />
+                <element signature="e#427#428#0" expanded="true" />
+                <element signature="e#452#453#0" expanded="true" />
+                <element signature="e#485#486#0" expanded="true" />
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#550#551#0" expanded="true" />
+                <element signature="e#586#587#0" expanded="true" />
+                <element signature="e#641#642#0" expanded="true" />
+                <element signature="e#691#692#0" expanded="true" />
+                <element signature="e#726#727#0" expanded="true" />
+                <element signature="e#757#758#0" expanded="true" />
+                <element signature="e#805#806#0" expanded="true" />
+                <element signature="e#845#846#0" expanded="true" />
+                <element signature="e#878#879#0" expanded="true" />
+                <element signature="e#909#910#0" expanded="true" />
+                <element signature="e#955#956#0" expanded="true" />
+                <element signature="e#995#996#0" expanded="true" />
+                <element signature="e#1042#1043#0" expanded="true" />
+                <element signature="e#1073#1074#0" expanded="true" />
+                <element signature="e#1133#1134#0" expanded="true" />
+                <element signature="e#1173#1174#0" expanded="true" />
+                <element signature="e#1212#1213#0" expanded="true" />
+                <element signature="e#1239#1240#0" expanded="true" />
+                <element signature="e#1287#1288#0" expanded="true" />
+                <element signature="e#1319#1320#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,7 +235,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>println</find>
       <find>getChats</find>
       <find>col</find>
       <find>consol</find>
@@ -208,6 +251,20 @@
       <find>execEdit</find>
       <find>viewSingleC</find>
       <find>selectUsers</find>
+      <find>clrs</find>
+      <find>logge</find>
+      <find>ONE MORE</find>
+      <find>chat02</find>
+      <find>createUser</find>
+      <find>sign</find>
+      <find>viewa</find>
+      <find>login</find>
+      <find>selectall</find>
+      <find>getCha</find>
+      <find>getCH</find>
+      <find>print</find>
+      <find>singleChatMenu</find>
+      <find>createCha</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -221,25 +278,25 @@
         <option value="$PROJECT_DIR$/src/ChatApp/db/DB.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/db/DBcore.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/core/Msgs.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/core/Msg.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/db/DAOall.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/ui/UIcore.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/Main.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/menu/MenuItem.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/menu/ConsoleUtils.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/menu/oldmenu/MenuOld.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/menu/Menu.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/db/Database.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/core/Role.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/ui/UI.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/db/RoleDAO.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/db/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/core/Chat.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/menu/ConsoleUtils.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/db/Database.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/db/MsgDAO.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/db/RoleDAO.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/menu/oldmenu/MenuOld.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/core/User.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/core/Role.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/db/ChatUsersDAO.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/db/ChatDAO.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/ui/UI.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/core/Msg.java" />
         <option value="$PROJECT_DIR$/src/ChatApp/ui/ChatApp.java" />
-        <option value="$PROJECT_DIR$/src/ChatApp/menu/Menu.java" />
+        <option value="$PROJECT_DIR$/src/ChatApp/db/MsgDAO.java" />
       </list>
     </option>
   </component>
@@ -433,7 +490,7 @@
       <workItem from="1545599247235" duration="6085000" />
       <workItem from="1545642549548" duration="3008000" />
       <workItem from="1545655675730" duration="4363000" />
-      <workItem from="1545662086872" duration="3290000" />
+      <workItem from="1545662086872" duration="23514000" />
     </task>
     <task id="LOCAL-00001" summary="Create UI class">
       <created>1544635813983</created>
@@ -449,11 +506,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544649201554</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Update &quot;showExpBox&quot; for multiline String">
+      <created>1545677419324</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1545677419324</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Update &quot;showExpBox&quot; for multiline String">
+      <created>1545677526182</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1545677526182</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139826000" />
+    <option name="totallyTimeSpent" value="160050000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -470,14 +541,14 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.11578947" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49843064" weight="0.21842106" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" sideWeight="0.49780288" visible="true" weight="0.09210526" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.36974263" side_tool="true" weight="0.17631578" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5021971" side_tool="true" visible="true" weight="0.09210526" />
       <window_info anchor="bottom" id="Maven Projects" order="14" weight="0.32894737" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.63025737" weight="0.12105263" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6296296" weight="0.12105263" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32894737" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32894737" />
       <window_info id="Capture Tool" order="2" />
@@ -577,6 +648,18 @@
           <caret line="123" column="51" selection-start-line="123" selection-start-column="51" selection-end-line="123" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10789#10790#0" expanded="true" />
+            <element signature="e#10824#10825#0" expanded="true" />
+            <element signature="e#10869#10870#0" expanded="true" />
+            <element signature="e#10904#10905#0" expanded="true" />
+            <element signature="e#10949#10950#0" expanded="true" />
+            <element signature="e#10984#10985#0" expanded="true" />
+            <element signature="e#13982#13983#0" expanded="true" />
+            <element signature="e#14017#14018#0" expanded="true" />
+            <element signature="e#14047#14048#0" expanded="true" />
+            <element signature="e#14082#14083#0" expanded="true" />
+            <element signature="e#14113#14114#0" expanded="true" />
+            <element signature="e#14148#14149#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -624,6 +707,18 @@
           <caret line="123" column="51" lean-forward="true" selection-start-line="123" selection-start-column="51" selection-end-line="123" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10789#10790#0" expanded="true" />
+            <element signature="e#10824#10825#0" expanded="true" />
+            <element signature="e#10869#10870#0" expanded="true" />
+            <element signature="e#10904#10905#0" expanded="true" />
+            <element signature="e#10949#10950#0" expanded="true" />
+            <element signature="e#10984#10985#0" expanded="true" />
+            <element signature="e#13982#13983#0" expanded="true" />
+            <element signature="e#14017#14018#0" expanded="true" />
+            <element signature="e#14047#14048#0" expanded="true" />
+            <element signature="e#14082#14083#0" expanded="true" />
+            <element signature="e#14113#14114#0" expanded="true" />
+            <element signature="e#14148#14149#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -668,6 +763,18 @@
           <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10789#10790#0" expanded="true" />
+            <element signature="e#10824#10825#0" expanded="true" />
+            <element signature="e#10869#10870#0" expanded="true" />
+            <element signature="e#10904#10905#0" expanded="true" />
+            <element signature="e#10949#10950#0" expanded="true" />
+            <element signature="e#10984#10985#0" expanded="true" />
+            <element signature="e#13982#13983#0" expanded="true" />
+            <element signature="e#14017#14018#0" expanded="true" />
+            <element signature="e#14047#14048#0" expanded="true" />
+            <element signature="e#14082#14083#0" expanded="true" />
+            <element signature="e#14113#14114#0" expanded="true" />
+            <element signature="e#14148#14149#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -712,6 +819,18 @@
           <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10789#10790#0" expanded="true" />
+            <element signature="e#10824#10825#0" expanded="true" />
+            <element signature="e#10869#10870#0" expanded="true" />
+            <element signature="e#10904#10905#0" expanded="true" />
+            <element signature="e#10949#10950#0" expanded="true" />
+            <element signature="e#10984#10985#0" expanded="true" />
+            <element signature="e#13982#13983#0" expanded="true" />
+            <element signature="e#14017#14018#0" expanded="true" />
+            <element signature="e#14047#14048#0" expanded="true" />
+            <element signature="e#14082#14083#0" expanded="true" />
+            <element signature="e#14113#14114#0" expanded="true" />
+            <element signature="e#14148#14149#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -777,6 +896,18 @@
           <caret line="61" column="38" lean-forward="true" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10789#10790#0" expanded="true" />
+            <element signature="e#10824#10825#0" expanded="true" />
+            <element signature="e#10869#10870#0" expanded="true" />
+            <element signature="e#10904#10905#0" expanded="true" />
+            <element signature="e#10949#10950#0" expanded="true" />
+            <element signature="e#10984#10985#0" expanded="true" />
+            <element signature="e#13982#13983#0" expanded="true" />
+            <element signature="e#14017#14018#0" expanded="true" />
+            <element signature="e#14047#14048#0" expanded="true" />
+            <element signature="e#14082#14083#0" expanded="true" />
+            <element signature="e#14113#14114#0" expanded="true" />
+            <element signature="e#14148#14149#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -792,13 +923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
           <caret line="1251" column="46" lean-forward="true" selection-start-line="1251" selection-start-column="8" selection-end-line="1251" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Msg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -841,20 +965,43 @@
     <entry file="file://$PROJECT_DIR$/src/ChatApp/menu/oldmenu/Menu.java" />
     <entry file="file://$PROJECT_DIR$/src/ChatApp/menu/Menu" />
     <entry file="file://$PROJECT_DIR$/src/ChatApp/menu/oldmenu/MenuOld.java" />
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/UserDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/menu/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1978">
-          <caret line="96" column="28" selection-start-line="82" selection-start-column="8" selection-end-line="96" selection-end-column="28" />
+        <state relative-caret-position="237">
+          <caret line="36" column="47" lean-forward="true" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#545#546#0" expanded="true" />
+            <element signature="e#584#585#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/MsgDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/ui/UI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+        <state relative-caret-position="1265">
+          <caret line="67" column="37" lean-forward="true" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1705#1706#0" expanded="true" />
+            <element signature="e#1766#1767#0" expanded="true" />
+            <element signature="e#2301#2302#0" expanded="true" />
+            <element signature="e#2374#2375#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -863,60 +1010,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatApp/core/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="330">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#559#560#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+            <element signature="e#1383#1384#0" expanded="true" />
+            <element signature="e#1419#1420#0" expanded="true" />
+            <element signature="e#1440#1441#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/RoleDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/UserDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Chat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
-            <element signature="e#406#407#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="128" column="37" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/ChatDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="35" column="45" lean-forward="true" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+        <state relative-caret-position="86">
+          <caret line="106" column="49" lean-forward="true" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -925,8 +1036,100 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatApp/db/ChatUsersDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+        <state relative-caret-position="178">
+          <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Chat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#378#379#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#550#551#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+            <element signature="e#641#642#0" expanded="true" />
+            <element signature="e#691#692#0" expanded="true" />
+            <element signature="e#726#727#0" expanded="true" />
+            <element signature="e#757#758#0" expanded="true" />
+            <element signature="e#805#806#0" expanded="true" />
+            <element signature="e#845#846#0" expanded="true" />
+            <element signature="e#878#879#0" expanded="true" />
+            <element signature="e#909#910#0" expanded="true" />
+            <element signature="e#955#956#0" expanded="true" />
+            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#1042#1043#0" expanded="true" />
+            <element signature="e#1073#1074#0" expanded="true" />
+            <element signature="e#1133#1134#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
+            <element signature="e#1212#1213#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+            <element signature="e#1287#1288#0" expanded="true" />
+            <element signature="e#1319#1320#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/RoleDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="82" column="55" lean-forward="true" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/core/Msg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <folding>
+            <element signature="e#169#170#0" expanded="true" />
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#227#228#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+            <element signature="e#359#360#0" expanded="true" />
+            <element signature="e#397#398#0" expanded="true" />
+            <element signature="e#428#429#0" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
+            <element signature="e#527#528#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+            <element signature="e#677#678#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/ChatDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="93" column="8" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="121" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="e#1324#1325#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatApp/db/MsgDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -935,36 +1138,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatApp/ui/ChatApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="139" column="56" selection-start-line="139" selection-start-column="56" selection-end-line="139" selection-end-column="56" />
+        <state relative-caret-position="371">
+          <caret line="344" lean-forward="true" selection-start-line="344" selection-end-line="344" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/ui/UI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1705#1706#0" expanded="true" />
-            <element signature="e#1737#1738#0" expanded="true" />
-            <element signature="e#2277#2278#0" expanded="true" />
-            <element signature="e#2350#2351#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatApp/menu/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="48" column="29" lean-forward="true" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#545#546#0" expanded="true" />
-            <element signature="e#584#585#0" expanded="true" />
+            <element signature="e#10789#10790#0" expanded="true" />
+            <element signature="e#10824#10825#0" expanded="true" />
+            <element signature="e#10869#10870#0" expanded="true" />
+            <element signature="e#10904#10905#0" expanded="true" />
+            <element signature="e#10949#10950#0" expanded="true" />
+            <element signature="e#10984#10985#0" expanded="true" />
+            <element signature="e#13982#13983#0" expanded="true" />
+            <element signature="e#14017#14018#0" expanded="true" />
+            <element signature="e#14047#14048#0" expanded="true" />
+            <element signature="e#14082#14083#0" expanded="true" />
+            <element signature="e#14113#14114#0" expanded="true" />
+            <element signature="e#14148#14149#0" expanded="true" />
           </folding>
         </state>
       </provider>

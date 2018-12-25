@@ -4,7 +4,11 @@ import ChatApp.core.Chat;
 import ChatApp.core.Msg;
 import ChatApp.core.Role;
 import ChatApp.core.User;
-import ChatApp.db.*;
+import ChatApp.db.ChatDAO;
+import ChatApp.db.ChatUsersDAO;
+import ChatApp.db.MsgDAO;
+import ChatApp.db.RoleDAO;
+import ChatApp.db.UserDAO;
 import ChatApp.menu.Menu;
 
 import java.io.BufferedReader;
@@ -71,10 +75,10 @@ public class ChatApp extends UI {
         singleUserMenu.clearActions();
 
         singleUserMenu.putAction("Users", ()-> execUsersMenu() );
-        singleUserMenu.putAction("Chats", () -> execChatsMenu() );
+        singleUserMenu.putAction("Chats", ()-> execChatsMenu() );
 
-        if (curUser.getRole().getUserRight("canEditSelf"))
-            usersMenu.putAction("Edit my profile", () -> editProfile() );
+        if (curRole.getUserRight("canEditSelf"))
+            singleUserMenu.putAction("Edit my profile", ()-> editProfile() );
 
         singleUserMenu.putAction("Back to Main Menu",()-> execMainMenu() );
         singleUserMenu.putAction("Exit",()-> System.exit(0));
@@ -124,79 +128,99 @@ public class ChatApp extends UI {
         chatsMenu.clearActions();
 
         chatDao.readUserChats(curUser);     //Get the chats of the current user
+        chatDao.readUsersOfChats(curUser);  //Get the users of all the chats
 
         chatsMenu.putAction("Create Chat", ()-> createChat() );
-        curUser.chats.forEach((chat)-> {
+        curUser.getChats().forEach((chat)-> {
             StringBuilder title = new StringBuilder()
-                    .append("Chat " + chat.chatName + "\t with: ");
-            for (int id : chat.usersIDs) {
+                    .append("Chat " + chat.getChatName() + "\t with: ");
+            for (int id : chat.getUsersIDs()) {
                 title.append(users.get(id).getUsername() + " ");
             }
-            chatsMenu.putAction( title.toString() , ()-> viewSingleChat(chat) );
+            chatsMenu.putAction( title.toString() , ()-> execSingleChatMenu(chat) );
         });
 
         chatsMenu.putAction("Back to profile view", ()-> execSingleUserMenu() );
-
         chatsMenu.putAction("Exit",()-> System.exit(0));
 
         chatsMenu.activateMenu();
 
     }
 
+    private void execSingleChatMenu(Chat chat) {
+        clrscr();
+        viewSingleChat(chat);
+        singleChatMenu = new Menu("Chat: " + chat.getChatName(), "");
+        singleChatMenu.putAction("Previous Messages", ()-> previousMsgs() );
+        singleChatMenu.putAction("Next Messages", () -> nextMsgs() );
+        singleChatMenu.putAction("Send Message", () -> sendMsg(chat) );
+        singleChatMenu.putAction("Toogle Message", () -> toogleMsg() );
+        singleChatMenu.putAction("Back to Chat view", () -> execSingleChatMenu(chat) );
+        singleChatMenu.putAction("Back to all Chats", () -> execChatsMenu() );
+
+        singleChatMenu.activateMenu();
+    }
+
 
     public void login() {
         clrscr();
-        showExpBox("ChatApp");
 
-        showExpBox("Enter Username");
+        showExpBox(" -- ChatApp -- ");
+        showExpBox("> Enter Username");
         String username = sc.nextLine();
 
         int userID = userDao.checkUser(username);    //Check if username exists in the db
 
         if (userID!=0) {
             clrscr();
-            showExpBox("Enter password");
+            showExpBox("> Enter password");
 
             int tries = 1;
             while(tries<4) {
                 String pass = sc.nextLine();
                 boolean isPassCorrect = userDao.checkPass(userID, pass); // Check if the Password is correct
                 if (isPassCorrect) {
-                    curUser = new User(userID);    //create the user
-                    users = userDao.selectAllUsers();   //get all the users
-                    curUser = users.get(userID);    //set the current user according to ID
-                    roleDao.selectRoleNames(roleNames); //set the rolenames
-                    curRole =  roleDao.readRole(curUser.getRole()); //set the curUser role
+                    setCurUserAndEnvironment(userID);
                     clrscr();
-                    pauseExecution("Logged in as\n" + curUser.getUsername() + "\n \nPress any key.");
+                    showExpBox("> Logged in as " + curUser.getUsername() );
+                    pauseExecution("  Press any key.");
                     execSingleUserMenu();
                 } else {
                     clrscr();
-                    showExpBox("Wrong Password!\n"+(3-tries)+" tries remaining!");
+                    showExpBox("> Wrong Password!\n  "+(3-tries)+" tries remaining!");
                     tries++;
                 }
             }
         }
         else {
-            pauseExecution("User does not exist!\nPress any key.");
-            execMainMenu();
+            showExpBox("> User does not exist!");
+            pauseExecution("Press any key.");
         }
         execMainMenu();
     }
 
+    public void setCurUserAndEnvironment(int userID) {
+        curUser = new User(userID);             //create the user
+        users = userDao.selectAllUsers();       //get all the users
+        curUser = users.get(userID);            //set the current user according to ID
+        roleNames = roleDao.selectRoleNames();  //set the rolenames
+        roleDao.readRole(curUser.getRole());    //set the curUser role
+        curRole = curUser.getRole();
+    }
+
     public void logout() {
         curUser = null;
+        curRole = null;
         execMainMenu();
     }
 
-    public void signUp() {
-
-        String username;
-        String pass;
-        clrscr();
-        showExpBox("Create new user\nEnter username");
+    public String usernameInput() {
         //username input
+        String username;
+        clrscr();
         while(true) {
+
+            showExpBox("> Create new user\nEnter username");
             username = sc.nextLine();
             int id = userDao.checkUser(username);
             if (id != 0) {
@@ -207,103 +231,140 @@ public class ChatApp extends UI {
                 break;
             }
         }
-        clrscr();
+        return username;
+    }
 
+    public String passInput(String username) {
         //password input
-        showExpBox(username + "\n Enter password");
+        String pass;
+        clrscr();
         while(true) {
+            showExpBox(username + "\n> Enter password");
             pass = sc.nextLine();
-            showExpBox("Please\nrepeat\nyour password");
+            clrscr();
+            showExpBox("> Please repeat your password");
             String passRepeat = sc.nextLine();
-            if (passRepeat.equals(pass)) {
-                int isCreated = userDao.createUser(username, pass);
-                if (isCreated==1) {
-                    showExpBox("User\n"+username+"\nwas created!\nPlease\nlog in.");
-                }
-                else{
-                    showExpBox("Something\nwent wrong!\nPlease\ntry again.");
-                    break;
-                }
-                break;
-            }
+            if (passRepeat.equals(pass)) break;
             else {
-                showExpBox("Passwords are\nnot identical\ntry\nagain");
+                clrscr();
+                showExpBox("> Passwords are not identical.\n  Try again");
             }
         }
+        return pass;
+    }
 
-        execMainMenu();
+    public String nameInput(String nameType) {
+        //first name input
+        String name;
+        clrscr();
+        while (true) {
+            clrscr();
+            showExpBox("> Enter your " + nameType + " name");
+            name = sc.nextLine();
+            if (requestConfirmation("Is " + name + " your " + nameType + " name? (y/n)")) break;
+        }
+        return name;
+    }
+
+    public void signUp() {
+
+        String username;
+        String pass;
+        String fname;
+        String lname;
+        int isCreated = 0;
+
+        username = usernameInput();     //get username input from user
+        pass = passInput(username);     //get password input from user
+        fname = nameInput("first");     //get first name input from user
+        lname = nameInput("last");      //get last name input from user
+
+        // create the user
+        isCreated = userDao.createUser(username, pass, fname, lname);
+
+        //check if the user has been created!
+        if (isCreated==1) {
+            showExpBox("> User "+username+" was created!.");
+            pauseExecution("  Please log in");
+        }
+        else{
+            showExpBox("> Something went wrong!\n  Please try again.");
+        }
+
+        execMainMenu();         //go back to the main menu
 
     }
 
 
     public void searchUser() {
         clrscr();
-        showExpBox("Search for a user");
+        showExpBox("> Search for a user");
         String userSearch = sc.nextLine();
 
-        ArrayList<User> usersFound = userDao.searchForUser(userSearch);
-        StringBuilder userPrint = new StringBuilder();
+        //search for users using the given keyword
+        HashMap<Integer,User> usersFound = userDao.searchForUser(userSearch);
 
-        if (usersFound.isEmpty()) {
-            userPrint.append("No users found!");
-        }
-        else {
-            for (User user : usersFound) {
-                userPrint.append(user.getID() + ": " + user.getUsername() + "\n");
-            }
-        }
-        userPrint.append("Press any key to go back.");
-        System.out.println(userPrint.toString());
-//        showExpBox(userPrint.toString());
-        sc.nextLine();
+        if (usersFound.isEmpty())
+            showExpBox("> No users found!");
+        else
+            viewUsers( usersFound.values() );
+
+        pauseExecution("  Press any key to go back.");
         execUsersMenu();
     }
 
     public void viewAllUsers(){
-        clrscr();
-        int i=1;
-        users.forEach((id,user)-> System.out.println("No" + " :" + user.getUsername() ));
 
-        System.out.println("Press any key to go back");
-        sc.nextLine();
+        viewUsers( users.values() );
+        pauseExecution("Press any key to go back");
         execUsersMenu();
     }
 
+    public void viewUsers( Collection<User> users) {
+        clrscr();
+        int i=1;
+        System.out.printf("%4s | %8s | %10s | %20s | %20s | %8s\n", "No", "Role", "Username", "First Name", "Last Name","Active");
+        for(User user : users) {
+            System.out.printf("%4d | %8s | %10s | %20s | %20s | %8s\n",
+                    i++ ,  roleNames.get( user.getRole().getID() ) , user.getUsername(), user.getFname(), user.getLname(), user.getActive() );
+        }
+    }
+
+
     public void viewSingleChat(Chat chat) {
         clrscr();
-        chatDao.readChat(curUser, chat);
+        msgDao.readChatMsgs(curUser, chat);
         StringBuilder chatString = new StringBuilder();
-        chatString.append("-- Chat: " + chat.chatName + "--\n\n");
-        for(Msg msg: chat.msgs) {
-            chatString.append(msg.id + "> " + users.get(msg.creator).getUsername() + "( date ) :\n\t" + msg.data + "\n\n");
+        showExpBox("-- Chat: " + chat.getChatName() + "--\n\n");
+        int i =1;
+        for(Msg msg: chat.getMsgs()) {
+            chatString.append(i++ + "> " + users.get(msg.getCreator()).getUsername())
+                      .append( "  (" + msg.getSentDate())
+                      .append( " ) :\n\t" + msg.getData() + "\n\n");
         }
 
         System.out.println(chatString.toString());
-        sc.nextLine();
-        execChatsMenu();
+        pauseExecution();
     }
 
     public void createChat() {
         clrscr();
         int chatInserted;
-        int msgsTableCreated;
         int chatUsersInserted;
 
         Chat chat = new Chat();     //create the new chat object
-        chat.creatorUserID = curUser.getID();   //set the creator id for the chat
+        chat.setCreatorUserID( curUser.getID() );   //set the creator id for the chat
         String chatName;
         while (true) {
             System.out.println("Enter chat name:");
             chatName = sc.nextLine();
             if (requestConfirmation("Proceed with '" + chatName + "' as the name of the Chat? (y/n) ")) break;
         }
-        chat.chatName = chatName;
+        chat.setChatName(chatName);
         chatInserted = chatDao.createChat(chat);    //create the chat in db
-        if (chatInserted==1) {
-            msgsTableCreated = msgDao.createMsgTable(chat); //if the chat was created create the msg table
-            ArrayList<User> usersSelected = selectUsers();
-            chatUsersInserted =  chatUsersDao.insertChatUsers(chat, usersSelected);
-        }
+
+        ArrayList<User> usersSelected = selectUsers();
+        chatUsersInserted =  chatUsersDao.insertChatUsers(chat, usersSelected);
 
         execChatsMenu();
     }
@@ -313,7 +374,6 @@ public class ChatApp extends UI {
         sc.nextLine();
         execSingleUserMenu();
     }
-
 
 
     public void toggleUser(User user) {
@@ -337,9 +397,13 @@ public class ChatApp extends UI {
 
         while(true) {
 
+            clrscr();
+
             int i = 1;
             for( User user: usersList) {
-                System.out.println("No"+ (i++) + " :" + user.getUsername());
+                if (user.getID()!=curUser.getID()) {
+                    System.out.println("No" + (i++) + " :" + user.getUsername());
+                }
             }
             System.out.println("Select a number to add user");
 
@@ -349,6 +413,7 @@ public class ChatApp extends UI {
 
                 if ( (usertoAdd > 0) && (usertoAdd < usersList.size()) ) {
                     selectedUsers.add( usersList.get(usertoAdd) );
+                    System.out.println("added user " + usertoAdd);
                 }
                 else {
                     System.out.println("Not a valid user");
@@ -363,6 +428,32 @@ public class ChatApp extends UI {
 
         return selectedUsers;
 
+    }
+
+
+    public void previousMsgs() {
+        notYetImplemented();
+    }
+
+    public void nextMsgs() {
+        notYetImplemented();
+    }
+
+    public void toogleMsg() {
+        notYetImplemented();
+    }
+
+    public void sendMsg(Chat chat) {
+        viewSingleChat(chat);
+        showExpBox("Enter your message: (200 characters max) ");
+        String data = sc.nextLine();
+        requestConfirmation("Are you sure yu want to send the message? (y/n)");
+
+        if (msgDao.sendMsg(curUser, chat, data)==1) {
+            showExpBox("Message was sent!");
+            pauseExecution();
+        }
+        execSingleChatMenu(chat);
     }
 
     public void notYetImplemented() {

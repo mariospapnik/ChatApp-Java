@@ -2,10 +2,7 @@ package ChatApp.db;
 
 import ChatApp.core.Role;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class RoleDAO extends Database {
 
@@ -19,29 +16,30 @@ public class RoleDAO extends Database {
         return roleDAO;
     }
 
-    public Role readRole(Role role){
+    public void readRole(Role role){
 
         String query =  "SELECT * FROM `roles` "+
                 "WHERE `id` = '" + role.getID()+ "';";
 
         Collection<Map<String,Object>> answer = new ArrayList<>();
+
         answer = getGenericSelect(query);
 
         //Loop through the rows and get values
         for (Map<String,Object> row: answer){
-            role.setRoleName( row.get("name").toString() );
+            role.setRoleName( String.valueOf(row.get("name")) );
 
             Map<String,Boolean> rightsOnUsers = new HashMap<>();
             Map<String,Boolean> rightsOnChats = new HashMap<>();
             Map<String,Boolean> rightsOnMsgs = new HashMap<>();
 
             //GET THE BOOLEANS FOR THE RIGHTS ON USERS
-            rightsOnUsers.put("canCreateUser", row.get("can_create_user").equals("1") );            //1.1
-            rightsOnUsers.put("canSearchUser", row.get("can_search_user").equals("1") );            //1.2
-            rightsOnUsers.put("canToogleUser", row.get("can_toogle_user").equals("1") );            //1.3
-            rightsOnUsers.put("canChangeUserType", row.get("can_change_user_type").equals("1") );   //1.4
-            rightsOnUsers.put("canEditUser", row.get("can_edit_user").equals("1") );                //1.5
-            rightsOnUsers.put("canEditSelf", row.get("can_edit_self").equals("1") );                //1.6
+            rightsOnUsers.put("canCreateUser", ( ((Integer) row.get("can_create_user")) == 1) );    //1.1
+            rightsOnUsers.put("canSearchUser", ( ((Integer) row.get("can_search_user")) == 1) );    //1.2
+            rightsOnUsers.put("canToogleUser", ( ((Integer) row.get("can_toogle_user")) == 1) );    //1.3
+            rightsOnUsers.put("canChangeUserType", ( ((Integer) row.get("can_change_user_type")) == 1) );//1.4
+            rightsOnUsers.put("canEditUser", ( ((Integer) row.get("can_edit_user")) == 1) );         //1.5
+            rightsOnUsers.put("canEditSelf", ( ((Integer) row.get("can_edit_self")) == 1) );        //1.6
 
             //GET THE BOOLEANS FOR THE RIGHTS ON CHATS
             rightsOnChats.put("canCreateChat", row.get("can_create_chat").equals("1") );            //2.1
@@ -71,19 +69,20 @@ public class RoleDAO extends Database {
 
         }
 
-        return role;
     }
 
-    public void selectRoleNames(HashMap<Integer,String> roleNames) {
+    public HashMap<Integer,String> selectRoleNames() {
+
+        HashMap<Integer,String> roleNames = new HashMap<>();
+        Collection<Map<String,Object>> answer = new ArrayList<>();
+
         String query = "SELECT * FROM `roles`;";
 
-        Collection<Map<String,Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
-
         for (Map<String,Object> row: answer){
-            System.out.println("ONE MORE!!!");
-//            roleNames.put( (int) row.get("id"), String.valueOf(row.get("name")));
-            System.out.println("TWO MORE!!!");
+            roleNames.put( (Integer) row.get("id"), (String) (row.get("role")) );
         }
+
+        return roleNames;
     }
 }

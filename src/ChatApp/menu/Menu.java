@@ -28,14 +28,18 @@ public class Menu {
     }
 
     public String generateText() {
+        UI.clrscr();
         StringBuilder sb = new StringBuilder()
-                .append(name + ": ")
-                .append(text + ":\n");
-
+                .append("-- " + name + " --\n")
+                .append("   " + text + "   \n");
+        UI.showExpBox(sb.toString());
+        StringBuilder text = new StringBuilder();
         List<String> actionNames = new ArrayList<>(actionsMap.keySet());
         for (int i = 0 ; i < actionNames.size() ; i++) {
-            sb.append(String.format(" %d: %s%n", i+1 , actionNames.get(i)));
+            text.append(String.format(" %d: %s %n%n", i+1 , actionNames.get(i)));
         }
+        System.out.println(text.toString());
+        sb.append(text);
         return sb.toString();
     }
 
@@ -59,8 +63,8 @@ public class Menu {
             }
 
             if (effectiveActionNumber < 0 || effectiveActionNumber >= actionsMap.size()) {
-                UI.clrscr();
-                System.out.println(generateText());
+
+                generateText();
                 System.out.println("Ignoring menu choice: " + actionNumber);
             }
             else break;
@@ -70,7 +74,7 @@ public class Menu {
     }
 
     public void activateMenu() {
-        System.out.println(generateText());
+        generateText();
         executeAction(userInput());
     }
 

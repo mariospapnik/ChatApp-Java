@@ -68,7 +68,7 @@ public class UserDAO extends Database {
         for (Map<String,Object> row: answer) {
             curUser.setID( (Integer) row.get("id"));
             curUser.setUsername( (String) row.get("username"));
-            curUser.setRoleID( (Integer) row.get("role_id"));
+            curUser.setRole( new Role( (Integer) row.get("role_id")) );
         }
 
 }
@@ -79,17 +79,19 @@ public class UserDAO extends Database {
             return (a.equals("1")? true: false );
     }
 
-    public int createUser(String username, String pass) {
+    public int createUser(String username, String pass, String fname, String lname) {
         Connection conn = createConnection();
         PreparedStatement prest = null;
         int rowsInserted = 0;
-        String query =  "INSERT INTO `users` (`username`,`pass`,`role_id`)"+
-                        "VALUES (?,?,?);";
+        String query =  "INSERT INTO `users` (`username`,`pass`,`role_id`,`fname`,`lname`)"+
+                        "VALUES (?,?,?,?,?);";
         try {
             prest = conn.prepareStatement(query);
             prest.setString(1,username);
             prest.setString(2,pass);
             prest.setInt(3,2);  //create a user with reader role
+            prest.setString(4,fname);
+            prest.setString(5,lname);
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,28 +100,24 @@ public class UserDAO extends Database {
 
     }
 
-    public ArrayList<User> searchForUser(String keyword){
-        String query =  "SELECT * FROM `chat02`.`users` "+
-                "WHERE `username` LIKE '%" + keyword + "%';";
+    public HashMap<Integer, User> searchForUser(String keyword){
+        String like = "'%" + keyword + "%'";
 
-        Collection<Map<String,Object>> answer = new ArrayList<>();
-        answer = getGenericSelect(query);
+        String query =  "SELECT * FROM `users` "+
+                "WHERE `username` LIKE " + like +
+                " OR `fname` LIKE " + like +
+                " OR `lname` LIKE " + like + ";";
 
-        ArrayList<User> usersFound = new ArrayList<>();
-
-        for (Map<String,Object> row: answer){
-            User user = new User();
-            user.setID( (Integer) row.get("id"));
-            user.setUsername( (String) row.get("username"));
-            user.setRoleID( (Integer) row.get("role_id"));
-            usersFound.add(user);
-        }
-
-        return usersFound;
+        return getUsersfromQuery(query);
     }
 
     public HashMap<Integer, User> selectAllUsers(){
-        String query =  "SELECT * FROM `chat02`.`users`;";
+
+        String query =  "SELECT * FROM `users`;";
+        return getUsersfromQuery(query);
+    }
+
+    public HashMap<Integer, User> getUsersfromQuery(String query){
 
         Collection<Map<String,Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
@@ -130,12 +128,17 @@ public class UserDAO extends Database {
             User user = new User();
             user.setID( (Integer) row.get("id"));
             user.setUsername( (String) row.get("username"));
-            user.setRoleID( (Integer) row.get("role_id"));
+            user.setRole(new Role( (Integer) row.get("role_id") ));
+            user.setFname((String) row.get("fname"));
+            user.setLname((String) row.get("lname"));
+            user.setActive( ((Integer) row.get("active")) == 1 );
             usersFound.put( user.getID() , user );
         }
 
         return usersFound;
     }
+
+
 
 
 

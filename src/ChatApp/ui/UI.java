@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import java.io.Console;
-import java.io.IOException;
 
 public class UI {
 
