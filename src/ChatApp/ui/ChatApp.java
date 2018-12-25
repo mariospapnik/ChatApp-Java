@@ -445,7 +445,7 @@ public class ChatApp extends UI {
 
     public void sendMsg(Chat chat) {
         viewSingleChat(chat);
-        showExpBox("Enter your message: (200 characters max) ");
+        showExpBox("Enter your message: (250 characters max) ");
         String data = sc.nextLine();
         requestConfirmation("Are you sure yu want to send the message? (y/n)");
 
