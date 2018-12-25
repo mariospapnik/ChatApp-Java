@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import java.io.Console;
 
-public class UI {
+public class Utilities {
 
     private static Console console = null;
 

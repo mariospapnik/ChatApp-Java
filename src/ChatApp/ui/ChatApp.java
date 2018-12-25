@@ -15,45 +15,72 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class ChatApp extends UI {
+public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
 
-    public static ChatApp chatApp = null;
-    public static Scanner sc = new Scanner(System.in);
-    public static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-    public static User curUser = null;
-    public static Role curRole = null;
-    public static HashMap<Integer, User> users = null;
-    public static HashMap<Integer, String> roleNames = null;
+    // Declare the app variable
+    private static ChatApp chatApp = null;
+    private static Scanner sc;
+    private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-    public static RoleDAO roleDao = RoleDAO.getInstance();
-    public static UserDAO userDao = UserDAO.getInstance();
-    public static ChatDAO chatDao = ChatDAO.getInstance();
-    public static ChatUsersDAO chatUsersDao = ChatUsersDAO.getInstance();
-    public static MsgDAO msgDao = MsgDAO.getInstance();
+    // Declare the variables for current user, current role and all the users and role names
+    private static User curUser = null;
+    private static Role curRole = null;
+    private static HashMap<Integer, User> users = null;
+    private static HashMap<Integer, String> roleNames = null;
 
-    public static Menu mainMenu = new Menu("ChatApp", "main menu");
-    public static Menu singleUserMenu = new Menu("User Menu", "User actions");
-    public static Menu usersMenu = new Menu("Users Menu", "Find users");
-    public static Menu editUserMenu = new Menu("Edit User", "Edit");
-    public static Menu chatsMenu = new Menu("Chats Menu", "Chats actions");
-    public static Menu singleChatMenu = new Menu("Chat Menu", "view Msgs");
+    // Declare the DAOs for CRUDing
+    private static RoleDAO roleDao;
+    private static UserDAO userDao;
+    private static ChatDAO chatDao;
+    private static ChatUsersDAO chatUsersDao;
+    private static MsgDAO msgDao;
+
+    // Declare the Menu objects
+    private static Menu mainMenu;
+    private static Menu singleUserMenu;
+    private static Menu usersMenu;
+    private static Menu editUserMenu;
+    private static Menu chatsMenu;
+    private static Menu singleChatMenu;
 
 
     private ChatApp(){ }
 
+    /*
+       ChatApp is Singleton
+       on first run DAOs Menus and Scanner are initialized
+    */
     public static ChatApp getInstance() {
-        if (chatApp == null)
+        if (chatApp == null) {
+
             chatApp = new ChatApp();
+            sc = new Scanner(System.in);
+
+            roleDao = RoleDAO.getInstance();
+            userDao = UserDAO.getInstance();
+            chatDao = ChatDAO.getInstance();
+            chatUsersDao = ChatUsersDAO.getInstance();
+            msgDao = MsgDAO.getInstance();
+
+            mainMenu = new Menu("ChatApp", "main menu");
+            singleUserMenu = new Menu("User Menu", "User actions");
+            usersMenu = new Menu("Users Menu", "Find users");
+            editUserMenu = new Menu("Edit User", "Edit");
+            chatsMenu = new Menu("Chats Menu", "Chats actions");
+            singleChatMenu = new Menu("Chat Menu", "view Msgs");
+        }
         return chatApp;
     }
 
-    //entry point
+    // Entry point
     public void startChatApp() {
         execMainMenu();
     }
 
-//    method to display the main screen
-    private void execMainMenu() {
+
+    //  ****** Implementing the ChatMenus Interface ******
+
+    public void execMainMenu() {
         clrscr();
         mainMenu.clearActions();
 
@@ -70,7 +97,7 @@ public class ChatApp extends UI {
         mainMenu.activateMenu();
     }
 
-    private void execSingleUserMenu() {
+    public void execSingleUserMenu() {
         clrscr();
         singleUserMenu.clearActions();
 
@@ -86,7 +113,7 @@ public class ChatApp extends UI {
         singleUserMenu.activateMenu();
     }
 
-    private void execUsersMenu() {
+    public void execUsersMenu() {
         clrscr();
         usersMenu.clearActions();
 
@@ -101,7 +128,7 @@ public class ChatApp extends UI {
         usersMenu.activateMenu();
     }
 
-    private void execEditUserMenu() {
+    public void execEditUserMenu() {
         clrscr();
         editUserMenu.clearActions();
 
@@ -120,8 +147,7 @@ public class ChatApp extends UI {
 
     }
 
-
-    private void execChatsMenu() {
+    public void execChatsMenu() {
 
         clrscr();
         chatsMenu = new Menu("Chats for " + curUser.getUsername(), "Select a chat");
@@ -147,7 +173,7 @@ public class ChatApp extends UI {
 
     }
 
-    private void execSingleChatMenu(Chat chat) {
+    public void execSingleChatMenu(Chat chat) {
         clrscr();
         viewSingleChat(chat);
         singleChatMenu = new Menu("Chat: " + chat.getChatName(), "");
@@ -161,6 +187,7 @@ public class ChatApp extends UI {
         singleChatMenu.activateMenu();
     }
 
+    //  ****** Implementing the ChatMethods Interface ******
 
     public void login() {
         clrscr();
@@ -199,6 +226,41 @@ public class ChatApp extends UI {
         execMainMenu();
     }
 
+    public void logout() {
+        curUser = null;
+        curRole = null;
+        execMainMenu();
+    }
+
+    public void signUp() {
+
+        String username;
+        String pass;
+        String fname;
+        String lname;
+        int isCreated = 0;
+
+        username = usernameInput();     //get username input from user
+        pass = passInput(username);     //get password input from user
+        fname = nameInput("first");     //get first name input from user
+        lname = nameInput("last");      //get last name input from user
+
+        // create the user
+        isCreated = userDao.createUser(username, pass, fname, lname);
+
+        //check if the user has been created!
+        if (isCreated==1) {
+            showExpBox("> User "+username+" was created!.");
+            pauseExecution("  Please log in");
+        }
+        else{
+            showExpBox("> Something went wrong!\n  Please try again.");
+        }
+
+        execMainMenu();         //go back to the main menu
+
+    }
+
     public void setCurUserAndEnvironment(int userID) {
         curUser = new User(userID);             //create the user
         users = userDao.selectAllUsers();       //get all the users
@@ -208,11 +270,7 @@ public class ChatApp extends UI {
         curRole = curUser.getRole();
     }
 
-    public void logout() {
-        curUser = null;
-        curRole = null;
-        execMainMenu();
-    }
+
 
     public String usernameInput() {
         //username input
@@ -266,34 +324,7 @@ public class ChatApp extends UI {
         return name;
     }
 
-    public void signUp() {
 
-        String username;
-        String pass;
-        String fname;
-        String lname;
-        int isCreated = 0;
-
-        username = usernameInput();     //get username input from user
-        pass = passInput(username);     //get password input from user
-        fname = nameInput("first");     //get first name input from user
-        lname = nameInput("last");      //get last name input from user
-
-        // create the user
-        isCreated = userDao.createUser(username, pass, fname, lname);
-
-        //check if the user has been created!
-        if (isCreated==1) {
-            showExpBox("> User "+username+" was created!.");
-            pauseExecution("  Please log in");
-        }
-        else{
-            showExpBox("> Something went wrong!\n  Please try again.");
-        }
-
-        execMainMenu();         //go back to the main menu
-
-    }
 
 
     public void searchUser() {

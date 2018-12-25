@@ -1,6 +1,6 @@
 package ChatApp.menu;
 
-import ChatApp.ui.UI;
+import ChatApp.ui.Utilities;
 
 import java.util.*;
 
@@ -28,11 +28,11 @@ public class Menu {
     }
 
     public String generateText() {
-        UI.clrscr();
+        Utilities.clrscr();
         StringBuilder sb = new StringBuilder()
                 .append("-- " + name + " --\n")
                 .append("   " + text + "   \n");
-        UI.showExpBox(sb.toString());
+        Utilities.showExpBox(sb.toString());
         StringBuilder text = new StringBuilder();
         List<String> actionNames = new ArrayList<>(actionsMap.keySet());
         for (int i = 0 ; i < actionNames.size() ; i++) {

@@ -1,15 +1,12 @@
 package ChatApp.db;
 
 import ChatApp.core.Chat;
-import ChatApp.core.Msg;
 import ChatApp.core.User;
-import ChatApp.ui.UI;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Scanner;
 
 public class ChatDAO extends Database {
 
