@@ -3,6 +3,7 @@ package ChatApp.app.db;
 import ChatApp.app.core.Role;
 import ChatApp.app.core.User;
 import ChatApp.app.db.dbcore.Database;
+import ChatApp.app.log.ChatLog;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,9 +35,11 @@ public class UserDAO extends Database {
 
         for (Map<String,Object> row: answer) {
             userID = (Integer) row.get("id");
-    }
+        }
+        //Log the activity
+        ChatLog.logAcivity("Log in attempt with username: " + username);
 
-    return userID;
+        return userID;
 }
 
     public boolean checkPass(int userID, String pass){
@@ -51,6 +54,10 @@ public class UserDAO extends Database {
         for (Map<String,Object> row: answer) {
             newID = (Integer) row.get("id");
         }
+
+        //Log the activity
+        ChatLog.logAcivity( ( (newID==0)?"Unsuccessful": "Successful" ) + " log in attempt for user with ID : " + userID);
+
         return newID != 0;
     }
 
@@ -70,13 +77,10 @@ public class UserDAO extends Database {
             curUser.setRole( new Role( (Integer) row.get("role_id")) );
         }
 
+        //Log the activity
+        ChatLog.logAcivity( "Retrieved info for the user: " + curUser.getUsername());
+
 }
-
-
-
-    public boolean toBool(String a){
-            return (a.equals("1")? true: false );
-    }
 
     public int createUser(String username, String pass, String fname, String lname) {
         Connection conn = createConnection();
@@ -95,6 +99,11 @@ public class UserDAO extends Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        //Log the activity
+        ChatLog.logAcivity("User with details: Username: " + username + "| FirstName: " + fname + " | LastName: " + lname + "\n"
+                    + ((rowsInserted==0)?"unsuccessfuly": "successfuly") + "inserted");
+
         return rowsInserted;
 
     }
@@ -106,6 +115,9 @@ public class UserDAO extends Database {
                 "WHERE `username` LIKE " + like +
                 " OR `fname` LIKE " + like +
                 " OR `lname` LIKE " + like + ";";
+
+        //Log the activity
+        ChatLog.logAcivity( "Search for users using '" + keyword + "' keyword." );
 
         return getUsersfromQuery(query);
     }
@@ -135,6 +147,9 @@ public class UserDAO extends Database {
             usersFound.put( user.getID() , user );
         }
 
+        //Log the activity
+        ChatLog.logAcivity( usersFound.size()  + " users where retrieved");
+
         return usersFound;
     }
 
@@ -146,6 +161,10 @@ public class UserDAO extends Database {
         String query = "UPDATE `users` SET `active` = '"+ toogle + "' WHERE `id` = '" + user.getID() + "';";
         userToogled = execUpdateInsert(query);
 
+        //Log the activity
+        ChatLog.logAcivity( ((userToogled==1)?"Successfully":"Unsuccessfully")
+                + " toggled user '" + user.getUsername() + "' .");
+
         return userToogled;
     }
 
@@ -156,8 +175,38 @@ public class UserDAO extends Database {
         String query = "UPDATE `users` SET `role_id` = '"+ role + "' WHERE `id` = '" + user.getID() + "';";
         userRoleUpdated = execUpdateInsert(query);
 
+        //Log the activity
+        ChatLog.logAcivity( ((userRoleUpdated==1)?"Successfully":"Unsuccessfully")
+                + " tried to update '" + user.getUsername() + "' role_id to " + role + " .");
+
         return userRoleUpdated;
 
+    }
+
+    public int updateUserFLName(User user, String name, String field) {
+        int nameUpdated = 0;
+
+        String query = "UPDATE `users` SET `" + field + "` = '"+ name + "' WHERE `id` = '" + user.getID() + "';";
+        nameUpdated = execUpdateInsert(query);
+
+        //Log the activity
+        ChatLog.logAcivity( ((nameUpdated==1)?"Successfully":"Unsuccessfully")
+                + " tried to update '" + user.getUsername() + "' " + field + " to " + name + " .");
+
+        return nameUpdated;
+    }
+
+    public int updatePass(User user, String newPass) {
+        int passUpdated = 0;
+
+        String query = "UPDATE `users` SET `pass` = '"+ newPass + "' WHERE `id` = '" + user.getID() + "';";
+        passUpdated = execUpdateInsert(query);
+
+        //Log the activity
+        ChatLog.logAcivity( ((passUpdated==1)?"Successfully":"Unsuccessfully")
+                + " tried to update '" + user.getUsername() + " password ");
+
+        return passUpdated;
     }
 
 

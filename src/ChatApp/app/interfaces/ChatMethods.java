@@ -15,8 +15,9 @@ public interface ChatMethods {
 
     void setCurUserAndEnvironment(int userID);
     String usernameInput();
-    String passInput(String username);
+    String newPassInput(String username);
     String nameInput(String nameType);
+    String readPass();
 
     void searchUser();
     void viewAllUsers();
@@ -24,21 +25,25 @@ public interface ChatMethods {
     void printRolesNames();
     void printUserDetailsTitles();
     void printUserDetails(User user, int i);
+    void updateUserPassword();
 
     void viewSingleChat(Chat chat);
     void createChat();
     void deleteChat(Chat chat);
     String chatNameInput();
+    void addUsersToChat(Chat chat);
+    void removeUsersFromChat(Chat chat);
+    void exitChat(Chat chat);
 
-    void editProfile();
+
     void toggleUser(User user);
     void changeUserType(User user);
     void editUserFLName(User user);
     ArrayList<User> selectFromUsers();
 
     Msg selectMsg(Chat chat);
-    void previousMsgs();
-    void nextMsgs();
+//    void previousMsgs();
+//    void nextMsgs();
     void toogleMsg(Chat chat);
     void deleteMsg(Chat chat);
     void sendMsg(Chat chat);

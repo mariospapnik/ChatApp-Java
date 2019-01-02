@@ -2,6 +2,7 @@ package ChatApp.app.db;
 
 import ChatApp.app.core.Role;
 import ChatApp.app.db.dbcore.Database;
+import ChatApp.app.log.ChatLog;
 
 import java.util.*;
 
@@ -17,6 +18,7 @@ public class RoleDAO extends Database {
         return roleDAO;
     }
 
+
     public void readRole(Role role){
 
         String query =  "SELECT * FROM `roles` "+
@@ -24,16 +26,16 @@ public class RoleDAO extends Database {
 
         Collection<Map<String,Object>> answer = new ArrayList<>();
 
-        answer = getGenericSelect(query);
+        answer = getGenericSelect(query);   //Execute the query
 
         //Loop through the rows and get values
         for (Map<String,Object> row: answer){
-            role.setRoleName( String.valueOf(row.get("name")) );
+
+            role.setRoleName( String.valueOf(row.get("name")) );    //Set the name of the role
 
             Map<String,Boolean> rightsOnUsers = new HashMap<>();
             Map<String,Boolean> rightsOnChats = new HashMap<>();
             Map<String,Boolean> rightsOnMsgs = new HashMap<>();
-
 
             String[][] rightsOnUsersString = {
                     {"canCreateUser","can_create_user"},             //1.1
@@ -68,6 +70,7 @@ public class RoleDAO extends Database {
                     {"canDeleteMsg" , "can_delete_msg"}             //3.6
             };
 
+
             //GET THE BOOLEANS FOR THE RIGHTS ON USERS
             for (String[] userRight: rightsOnUsersString ) {
                 rightsOnUsers.put( userRight[0], ( ((Integer) row.get( userRight[1]) ) == 1) );
@@ -91,6 +94,9 @@ public class RoleDAO extends Database {
 
         }
 
+        //Log the activity
+        ChatLog.logAcivity( "Retrieved the Role and Rights for '" + role.getRoleName() + "'. ");
+
     }
 
     public HashMap<Integer,String> selectRoleNames() {
@@ -104,6 +110,9 @@ public class RoleDAO extends Database {
         for (Map<String,Object> row: answer){
             roleNames.put( (Integer) row.get("id"), (String) (row.get("role")) );
         }
+
+        //Log the activity
+        ChatLog.logAcivity( "Retrieved the Role Names and Id's ");
 
         return roleNames;
     }

@@ -1,0 +1,1438 @@
+*************************
+2018-12-27T10:26:00.778 
+Log in attempt with username: maria
+*************************
+2018-12-27T10:26:01.585 
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-27T10:26:01.602 
+id: 6 |  Username : null
+8 users where retrieved
+*************************
+2018-12-27T10:26:04.036 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-27T10:26:06.268 
+id: 6 |  Username : maria
+Search for users using 'test' keyword.
+*************************
+2018-12-27T10:26:06.285 
+id: 6 |  Username : maria
+0 users where retrieved
+*************************
+2018-12-27T10:26:07.271 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-27T10:26:09.250 
+id: 6 |  Username : maria
+Search for users using 'maria' keyword.
+*************************
+2018-12-27T10:26:09.260 
+id: 6 |  Username : maria
+1 users where retrieved
+*************************
+2018-12-27T10:26:09.965 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-28T00:53:17.332 
+Log in attempt with username: admin
+*************************
+2018-12-28T00:53:19.197 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T00:53:19.210 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T00:53:56.837 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T00:54:24.981 
+id: 1 |  Username : admin
+Successfully tried to update 'mitsos' lname to Xristodoulou .
+*************************
+2018-12-28T00:54:25.105 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T00:55:20.240 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T01:56:43.083 
+Log in attempt with username: admin
+*************************
+2018-12-28T01:56:44.372 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T01:56:44.384 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T01:56:44.396 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T01:59:06.790 
+Log in attempt with username: admin
+*************************
+2018-12-28T01:59:08.162 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T01:59:08.176 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T01:59:08.189 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T01:59:31.674 
+Log in attempt with username: admin
+*************************
+2018-12-28T01:59:32.334 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T01:59:32.347 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T01:59:32.357 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T02:00:03.722 
+Log in attempt with username: admin
+*************************
+2018-12-28T02:00:05.716 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T02:00:05.729 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T02:00:05.740 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T02:01:52.029 
+Log in attempt with username: admin
+*************************
+2018-12-28T02:01:52.966 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T02:01:52.978 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T02:01:52.997 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T02:01:53.007 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-28T02:01:56.746 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T02:17:01.887 
+Log in attempt with username: admin
+*************************
+2018-12-28T02:17:02.955 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T02:17:02.961 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T02:17:02.972 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T02:17:02.982 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-28T02:17:05.212 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T02:17:12.466 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T02:17:20.752 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T02:18:03.717 
+Log in attempt with username: maria
+*************************
+2018-12-28T02:18:04.503 
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-28T02:18:04.513 
+id: 6 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T02:18:04.523 
+id: 6 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T02:18:04.533 
+id: 6 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-28T02:18:08.457 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-28T02:18:12.737 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-28T02:18:27.296 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-28T02:18:37.662 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-28T02:18:45.932 
+id: 6 |  Username : maria
+Successfully toggled message with id '10' .
+*************************
+2018-12-28T02:18:49.066 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-28T02:19:05.492 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-28T02:19:36.602 
+id: 6 |  Username : maria
+successfully tried to send a new message into'Katoikia
+Message Data: 'Mitsos I muted your 4th message! Sorry for this!'.
+*************************
+2018-12-28T02:19:37.767 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-28T02:32:35.822 
+Log in attempt with username: admin
+*************************
+2018-12-28T02:32:37.273 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T02:32:37.276 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T02:32:37.289 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T02:32:37.294 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-28T02:32:43.378 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '2: Dimarxeio .
+*************************
+2018-12-28T02:32:54.468 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T02:33:02.053 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T02:33:09.804 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T19:42:52.003 
+Log in attempt with username: maria
+*************************
+2018-12-28T19:42:53.033 
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-28T19:42:53.053 
+id: 6 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T19:42:53.068 
+id: 6 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T19:42:53.073 
+id: 6 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-28T19:43:11.728 
+id: 6 |  Username : maria
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-28T19:43:19.583 
+id: 6 |  Username : maria
+Successfully tried to update 'maria password 
+*************************
+2018-12-28T19:43:27.169 
+Log in attempt with username: maria
+*************************
+2018-12-28T19:43:28.234 
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-28T19:43:28.249 
+id: 6 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T19:43:28.259 
+id: 6 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T19:43:28.269 
+id: 6 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-28T19:43:31.542 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-28T19:44:00.372 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-28T19:44:09.317 
+id: 6 |  Username : maria
+Search for users using 'mar' keyword.
+*************************
+2018-12-28T19:44:09.337 
+id: 6 |  Username : maria
+2 users where retrieved
+*************************
+2018-12-28T19:44:24.804 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-28T19:44:56.807 
+id: 6 |  Username : maria
+Unsuccessfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-28T19:45:01.194 
+id: 6 |  Username : maria
+Unsuccessfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-28T19:45:11.434 
+id: 6 |  Username : maria
+successfully tried to send a new message into'Christmas Chat
+Message Data: 'Hello Everybody!'.
+*************************
+2018-12-28T19:45:12.578 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-28T19:45:23.313 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-28T19:45:32.508 
+id: 6 |  Username : maria
+Successfully toggled message with id '31' .
+*************************
+2018-12-28T19:45:34.597 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-28T19:46:14.985 
+Log in attempt with username: admin
+*************************
+2018-12-28T19:46:16.114 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T19:46:16.124 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T19:46:16.139 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T19:46:16.154 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-28T19:46:19.458 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2018-12-28T19:46:40.920 
+Log in attempt with username: admin
+*************************
+2018-12-28T19:46:42.804 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-28T19:46:42.824 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-28T19:46:42.844 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-28T19:46:42.854 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-28T19:46:49.178 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-29T11:30:58.945 
+Log in attempt with username: admin
+*************************
+2018-12-29T11:31:00.211 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-29T11:31:00.223 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-29T11:31:00.234 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T11:31:00.244 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T11:31:07.215 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-29T11:31:30.388 
+id: 1 |  Username : admin
+Successfully removed 1 users from chat users from chat with id 8 and name: Christmas Chat .
+*************************
+2018-12-29T11:31:30.464 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-29T11:31:54.860 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-29T11:32:06.987 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-29T11:32:35.031 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '8: Christmas Chat .
+*************************
+2018-12-29T11:40:38.007 
+Log in attempt with username: maria
+*************************
+2018-12-29T11:40:38.844 
+Unsuccessful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:40:40.366 
+Unsuccessful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:40:44.724 
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:40:44.736 
+id: 6 |  Username : null
+8 users where retrieved
+*************************
+2018-12-29T11:40:44.744 
+id: 6 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T11:40:44.751 
+id: 6 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T11:40:59.533 
+id: 6 |  Username : maria
+Unsuccessfully tried to read messages for chat '9: lampes .
+*************************
+2018-12-29T11:53:24.078 
+Log in attempt with username: maria
+*************************
+2018-12-29T11:53:25.530 
+Unsuccessful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:53:26.566 
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:53:26.578 
+id: 6 |  Username : null
+8 users where retrieved
+*************************
+2018-12-29T11:53:26.588 
+id: 6 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T11:53:26.604 
+id: 6 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T11:53:37.098 
+id: 6 |  Username : maria
+Unsuccessful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:53:46.963 
+id: 6 |  Username : maria
+Unsuccessful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:53:51.811 
+id: 6 |  Username : maria
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:53:56.049 
+id: 6 |  Username : maria
+Successfully tried to update 'maria password 
+*************************
+2018-12-29T11:53:59.820 
+Log in attempt with username: maria
+*************************
+2018-12-29T11:54:00.638 
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-29T11:54:00.647 
+id: 6 |  Username : null
+8 users where retrieved
+*************************
+2018-12-29T11:54:00.655 
+id: 6 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T11:54:00.665 
+id: 6 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T12:35:40.643 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-29T12:35:48.219 
+id: 6 |  Username : maria
+Search for users using 'ma' keyword.
+*************************
+2018-12-29T12:35:48.230 
+id: 6 |  Username : maria
+2 users where retrieved
+*************************
+2018-12-29T12:35:50.086 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-29T12:35:52.239 
+id: 6 |  Username : maria
+8 users where retrieved
+*************************
+2018-12-29T12:35:59.673 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '22: test2 .
+*************************
+2018-12-29T12:36:33.094 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '22: test2 .
+*************************
+2018-12-29T12:36:43.146 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '22: test2 .
+*************************
+2018-12-29T12:36:49.427 
+id: 6 |  Username : maria
+successfully tried to send a new message into'test2
+Message Data: 'Welcome GuyS!'.
+*************************
+2018-12-29T12:36:50.630 
+id: 6 |  Username : maria
+Successfully tried to read messages for chat '22: test2 .
+*************************
+2018-12-29T12:37:10.160 
+Log in attempt with username: admin
+*************************
+2018-12-29T12:37:11.211 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-29T12:37:11.217 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2018-12-29T12:37:11.222 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T12:37:11.227 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T12:39:43.830 
+Log in attempt with username: maria
+*************************
+2018-12-29T12:39:44.762 
+Successful log in attempt for user with ID : 7
+*************************
+2018-12-29T12:39:44.771 
+id: 7 |  Username : null
+7 users where retrieved
+*************************
+2018-12-29T12:39:44.783 
+id: 7 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T12:39:44.789 
+id: 7 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T12:39:57.963 
+Log in attempt with username: admin
+*************************
+2018-12-29T12:39:59.033 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-29T12:39:59.039 
+id: 1 |  Username : null
+7 users where retrieved
+*************************
+2018-12-29T12:39:59.045 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T12:39:59.051 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T12:42:28.306 
+Log in attempt with username: admin
+*************************
+2018-12-29T12:42:29.130 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-29T12:42:29.139 
+id: 1 |  Username : null
+7 users where retrieved
+*************************
+2018-12-29T12:42:29.146 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T12:42:29.153 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T12:42:34.248 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-29T12:43:17.931 
+Log in attempt with username: maria
+*************************
+2018-12-29T12:43:20.337 
+Successful log in attempt for user with ID : 7
+*************************
+2018-12-29T12:43:20.345 
+id: 7 |  Username : null
+7 users where retrieved
+*************************
+2018-12-29T12:43:20.357 
+id: 7 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-29T12:43:20.365 
+id: 7 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-29T12:43:29.164 
+id: 7 |  Username : maria
+Successful log in attempt for user with ID : 7
+*************************
+2018-12-29T12:43:31.965 
+id: 7 |  Username : maria
+Successfully tried to update 'maria password 
+*************************
+2018-12-30T12:13:17.533 
+Log in attempt with username: maria
+*************************
+2018-12-30T12:13:19.067 
+Successful log in attempt for user with ID : 7
+*************************
+2018-12-30T12:13:19.077 
+id: 7 |  Username : null
+7 users where retrieved
+*************************
+2018-12-30T12:13:19.088 
+id: 7 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-30T12:13:19.095 
+id: 7 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-30T12:13:25.624 
+id: 7 |  Username : maria
+Successful log in attempt for user with ID : 7
+*************************
+2018-12-30T12:13:51.491 
+id: 7 |  Username : maria
+Successfully tried to update 'maria password 
+*************************
+2018-12-30T12:13:58.783 
+Log in attempt with username: maria
+*************************
+2018-12-30T12:14:02.665 
+Successful log in attempt for user with ID : 7
+*************************
+2018-12-30T12:14:02.675 
+id: 7 |  Username : null
+7 users where retrieved
+*************************
+2018-12-30T12:14:02.682 
+id: 7 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-30T12:14:02.688 
+id: 7 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-30T12:14:21.221 
+id: 7 |  Username : maria
+successfully tried to create a new chat with id: 5 and name: Christamas Chat .
+*************************
+2018-12-30T12:15:36.860 
+Log in attempt with username: maria
+*************************
+2018-12-30T12:15:39.746 
+Successful log in attempt for user with ID : 7
+*************************
+2018-12-30T12:15:39.760 
+id: 7 |  Username : null
+7 users where retrieved
+*************************
+2018-12-30T12:15:39.773 
+id: 7 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-30T12:15:39.784 
+id: 7 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-30T12:15:45.287 
+id: 7 |  Username : maria
+Unsuccessfully tried to read messages for chat '5: Christamas Chat .
+*************************
+2018-12-30T12:15:48.076 
+id: 7 |  Username : maria
+Unsuccessfully tried to read messages for chat '5: Christamas Chat .
+*************************
+2018-12-30T12:16:23.766 
+id: 7 |  Username : maria
+successfully tried to send a new message into'Christamas Chat
+Message Data: 'Welcome guys! Let's organize our christmas weekend!'.
+*************************
+2018-12-30T12:16:24.623 
+id: 7 |  Username : maria
+Successfully tried to read messages for chat '5: Christamas Chat .
+*************************
+2018-12-30T12:17:01.517 
+id: 7 |  Username : maria
+Successfully tried to update 'maria' lname to Parakirou .
+*************************
+2018-12-30T12:17:03.695 
+id: 7 |  Username : maria
+7 users where retrieved
+*************************
+2018-12-30T12:17:07.604 
+id: 7 |  Username : maria
+7 users where retrieved
+*************************
+2018-12-30T12:17:10.243 
+id: 7 |  Username : maria
+Search for users using 'maria' keyword.
+*************************
+2018-12-30T12:17:10.253 
+id: 7 |  Username : maria
+1 users where retrieved
+*************************
+2018-12-30T12:17:11.102 
+id: 7 |  Username : maria
+7 users where retrieved
+*************************
+2018-12-30T12:17:31.368 
+Log in attempt with username: admin
+*************************
+2018-12-30T12:17:32.509 
+Successful log in attempt for user with ID : 1
+*************************
+2018-12-30T12:17:32.515 
+id: 1 |  Username : null
+7 users where retrieved
+*************************
+2018-12-30T12:17:32.524 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2018-12-30T12:17:32.530 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-30T12:17:50.196 
+id: 1 |  Username : admin
+7 users where retrieved
+*************************
+2018-12-30T12:18:21.230 
+id: 1 |  Username : admin
+7 users where retrieved
+*************************
+2018-12-30T12:18:29.229 
+Log in attempt with username: loulis
+*************************
+2018-12-30T12:18:30.096 
+Successful log in attempt for user with ID : 6
+*************************
+2018-12-30T12:18:30.105 
+id: 6 |  Username : null
+7 users where retrieved
+*************************
+2018-12-30T12:18:30.114 
+id: 6 |  Username : loulis
+Retrieved the Role Names and Id's 
+*************************
+2018-12-30T12:18:30.122 
+id: 6 |  Username : loulis
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-30T12:18:31.998 
+id: 6 |  Username : loulis
+7 users where retrieved
+*************************
+2018-12-30T12:18:41.699 
+id: 6 |  Username : loulis
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-30T12:18:46.898 
+id: 6 |  Username : loulis
+Successfully tried to read messages for chat '3: Katoikia .
+*************************
+2018-12-30T12:30:42.734 
+Log in attempt with username: maria
+*************************
+2018-12-30T12:30:45.704 
+Successful log in attempt for user with ID : 7
+*************************
+2018-12-30T12:30:45.717 
+id: 7 |  Username : null
+7 users where retrieved
+*************************
+2018-12-30T12:30:45.728 
+id: 7 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2018-12-30T12:30:45.739 
+id: 7 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2018-12-30T12:30:51.791 
+id: 7 |  Username : maria
+7 users where retrieved
+*************************
+2019-01-01T02:01:11.978 
+Log in attempt with username: takoulis+++
+*************************
+2019-01-01T02:03:32.659 
+Log in attempt with username: takouslis+++
+*************************
+2019-01-01T02:04:16.100 
+Log in attempt with username: asas3320949023034____
+*************************
+2019-01-01T02:05:04.679 
+Log in attempt with username: asd_)
+*************************
+2019-01-01T21:29:08.260 
+Log in attempt with username: admin
+*************************
+2019-01-01T21:29:08.882 
+Successful log in attempt for user with ID : 1
+*************************
+2019-01-01T21:29:08.903 
+id: 1 |  Username : null
+7 users where retrieved
+*************************
+2019-01-01T21:29:08.929 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2019-01-01T21:29:08.937 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-01T21:29:12.123 
+id: 1 |  Username : admin
+7 users where retrieved
+*************************
+2019-01-01T21:29:27.593 
+id: 1 |  Username : admin
+Successfully toggled user 'maria' .
+*************************
+2019-01-01T21:29:28.711 
+id: 1 |  Username : admin
+7 users where retrieved
+*************************
+2019-01-01T21:29:37.838 
+Log in attempt with username: maria
+*************************
+2019-01-01T21:29:38.818 
+Unsuccessful log in attempt for user with ID : 7
+*************************
+2019-01-01T21:29:46.851 
+Unsuccessful log in attempt for user with ID : 7
+*************************
+2019-01-01T21:29:49.232 
+Successful log in attempt for user with ID : 7
+*************************
+2019-01-01T21:29:49.239 
+id: 7 |  Username : null
+7 users where retrieved
+*************************
+2019-01-01T21:29:49.245 
+id: 7 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2019-01-01T21:29:49.251 
+id: 7 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-01T21:30:01.222 
+Log in attempt with username: admin
+*************************
+2019-01-01T21:30:02.163 
+Successful log in attempt for user with ID : 1
+*************************
+2019-01-01T21:30:02.176 
+id: 1 |  Username : null
+7 users where retrieved
+*************************
+2019-01-01T21:30:02.189 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2019-01-01T21:30:02.200 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-01T21:30:04.454 
+id: 1 |  Username : admin
+7 users where retrieved
+*************************
+2019-01-01T21:30:11.662 
+id: 1 |  Username : admin
+Successfully toggled user 'maria' .
+*************************
+2019-01-01T21:30:12.421 
+id: 1 |  Username : admin
+7 users where retrieved
+*************************
+2019-01-01T21:30:23.069 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '5: Christamas Chat .
+*************************
+2019-01-01T21:30:41.292 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '5: Christamas Chat .
+*************************
+2019-01-01T21:31:01.175 
+id: 1 |  Username : admin
+Successfully removed 2 users from chat users from chat with id 5 and name: Christamas Chat .
+*************************
+2019-01-01T22:16:19.311 
+Log in attempt with username: maria
+*************************
+2019-01-01T22:16:22.362 
+Successful log in attempt for user with ID : 7
+*************************
+2019-01-01T22:16:22.379 
+id: 7 |  Username : null
+7 users where retrieved
+*************************
+2019-01-01T22:16:22.395 
+id: 7 |  Username : maria
+Retrieved the Role Names and Id's 
+*************************
+2019-01-01T22:16:22.406 
+id: 7 |  Username : maria
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-01T22:17:03.317 
+id: 7 |  Username : maria
+Successfully tried to read messages for chat '5: Christamas Chat .
+*************************
+2019-01-01T22:17:29.307 
+id: 7 |  Username : maria
+Successfully tried to read messages for chat '5: Christamas Chat .
+*************************
+2019-01-01T22:17:39.536 
+id: 7 |  Username : maria
+successfully tried to send a new message into'Christamas Chat
+Message Data: 'Hello guys!'.
+*************************
+2019-01-01T22:17:42.247 
+id: 7 |  Username : maria
+Successfully tried to read messages for chat '5: Christamas Chat .
+*************************
+2019-01-02T01:40:15.907 
+Log in attempt with username: asdas_
+*************************
+2019-01-02T01:43:30.733 
+Log in attempt with username: Katina99
+*************************
+2019-01-02T01:43:51.388 
+Log in attempt with username: Markos
+*************************
+2019-01-02T01:44:32.647 
+User with details: Username: Markos| FirstName: Markos | LastName: Olotelos
+successfulyinserted
+*************************
+2019-01-02T01:44:37.425 
+Log in attempt with username: Markos
+*************************
+2019-01-02T01:44:41.733 
+Successful log in attempt for user with ID : 8
+*************************
+2019-01-02T01:44:41.762 
+id: 8 |  Username : null
+8 users where retrieved
+*************************
+2019-01-02T01:44:41.772 
+id: 8 |  Username : Markos
+Retrieved the Role Names and Id's 
+*************************
+2019-01-02T01:44:41.778 
+id: 8 |  Username : Markos
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-02T01:44:53.833 
+id: 8 |  Username : Markos
+successfully tried to create a new chat with id: 6 and name: Casual Chat .
+*************************
+2019-01-02T01:45:10.482 
+id: 8 |  Username : Markos
+Unsuccessfully tried to read messages for chat '6: Casual Chat .
+*************************
+2019-01-02T01:45:12.339 
+id: 8 |  Username : Markos
+Unsuccessfully tried to read messages for chat '6: Casual Chat .
+*************************
+2019-01-02T01:45:17.325 
+id: 8 |  Username : Markos
+successfully tried to send a new message into'Casual Chat
+Message Data: 'Hello guys!'.
+*************************
+2019-01-02T01:45:18.218 
+id: 8 |  Username : Markos
+Successfully tried to read messages for chat '6: Casual Chat .
+*************************
+2019-01-02T01:45:20.251 
+id: 8 |  Username : Markos
+Successfully tried to read messages for chat '6: Casual Chat .
+*************************
+2019-01-02T01:45:29.215 
+id: 8 |  Username : Markos
+successfully tried to send a new message into'Casual Chat
+Message Data: 'Are we up to something today?'.
+*************************
+2019-01-02T01:45:29.972 
+id: 8 |  Username : Markos
+Successfully tried to read messages for chat '6: Casual Chat .
+*************************
+2019-01-02T01:45:39.564 
+id: 8 |  Username : Markos
+Successfully removed 1 users from chat users from chat with id 6 and name: Casual Chat .
+*************************
+2019-01-02T01:45:54.090 
+Log in attempt with username: admin
+*************************
+2019-01-02T01:45:55.020 
+Successful log in attempt for user with ID : 1
+*************************
+2019-01-02T01:45:55.034 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2019-01-02T01:45:55.048 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2019-01-02T01:45:55.061 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-02T01:45:59.303 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '6: Casual Chat .
+*************************
+2019-01-02T02:16:17.495 
+Log in attempt with username: admin
+*************************
+2019-01-02T02:16:18.556 
+Successful log in attempt for user with ID : 1
+*************************
+2019-01-02T02:16:18.574 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2019-01-02T02:16:18.597 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2019-01-02T02:16:18.621 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-02T02:16:20.118 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2019-01-02T02:18:23.372 
+Log in attempt with username: admin
+*************************
+2019-01-02T02:18:24.554 
+Successful log in attempt for user with ID : 1
+*************************
+2019-01-02T02:18:24.571 
+id: 1 |  Username : null
+8 users where retrieved
+*************************
+2019-01-02T02:18:24.596 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2019-01-02T02:18:24.606 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-02T02:18:25.982 
+id: 1 |  Username : admin
+8 users where retrieved
+*************************
+2019-01-02T02:18:31.866 
+id: 1 |  Username : admin
+Log in attempt with username: takis
+*************************
+2019-01-02T02:18:46.584 
+id: 1 |  Username : admin
+Log in attempt with username: karagkioz
+*************************
+2019-01-02T02:19:30.702 
+id: 1 |  Username : admin
+User with details: Username: karagkioz| FirstName: Kyrios | LastName: Kyriou
+successfulyinserted
+*************************
+2019-01-02T02:19:37.674 
+id: 1 |  Username : admin
+9 users where retrieved
+*************************
+2019-01-02T02:20:33.107 
+id: 1 |  Username : admin
+9 users where retrieved
+*************************
+2019-01-02T02:25:16.786 
+Log in attempt with username: admin
+*************************
+2019-01-02T02:25:17.928 
+Successful log in attempt for user with ID : 1
+*************************
+2019-01-02T02:25:17.948 
+id: 1 |  Username : null
+9 users where retrieved
+*************************
+2019-01-02T02:25:17.975 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2019-01-02T02:25:17.987 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-02T02:25:21.724 
+id: 1 |  Username : admin
+Unsuccessfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:25:24.204 
+id: 1 |  Username : admin
+Unsuccessfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:25:30.201 
+id: 1 |  Username : admin
+successfully tried to send a new message into'Atomiko
+Message Data: 'Kalimera paidia!'.
+*************************
+2019-01-02T02:25:31.476 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:25:33.650 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:25:46.536 
+id: 1 |  Username : admin
+successfully tried to send a new message into'Atomiko
+Message Data: 'askdmaknsdkasdkamskldmaksldmalmdkmfksdlnvfdnbfndbjdnfbkjlnfbjkndfjkbndfljbnlkdnfoiajwpoadkmsklvnfsdlnbsjbnldfnbsdjfoisjvnsdfnblksjnfgblkjnfgbspfkpsokfepospeofsdfsgl;dfhkdlfmnglkdfgnbd'.
+*************************
+2019-01-02T02:25:48.200 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:07.275 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:18.259 
+id: 1 |  Username : admin
+successfully tried to send a new message into'Atomiko
+Message Data: ''.
+*************************
+2019-01-02T02:26:18.347 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:37.579 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:39.121 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:41.488 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:43.673 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:43.741 
+id: 1 |  Username : admin
+successfully tried to send a new message into'Atomiko
+Message Data: '    No need to escape ., and probably no need to escape - either since it's last in the class (but I'm unsure how Java handles this). - Qtax Jul 21 '11 at 21:33'.
+*************************
+2019-01-02T02:26:43.842 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:44.982 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:44.999 
+id: 1 |  Username : admin
+successfully tried to send a new message into'Atomiko
+Message Data: ''.
+*************************
+2019-01-02T02:26:45.096 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:45.766 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:45.793 
+id: 1 |  Username : admin
+successfully tried to send a new message into'Atomiko
+Message Data: 'add a comment'.
+*************************
+2019-01-02T02:26:45.878 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:46.517 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:46.542 
+id: 1 |  Username : admin
+successfully tried to send a new message into'Atomiko
+Message Data: '1'.
+*************************
+2019-01-02T02:26:46.631 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:47.482 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:47.517 
+id: 1 |  Username : admin
+successfully tried to send a new message into'Atomiko
+Message Data: ''.
+*************************
+2019-01-02T02:26:47.609 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:26:53.368 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:05.417 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:13.951 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:22.072 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:25.304 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:33.078 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:35.830 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:39.573 
+Log in attempt with username: admin
+*************************
+2019-01-02T02:27:40.729 
+Successful log in attempt for user with ID : 1
+*************************
+2019-01-02T02:27:40.749 
+id: 1 |  Username : null
+9 users where retrieved
+*************************
+2019-01-02T02:27:40.775 
+id: 1 |  Username : admin
+Retrieved the Role Names and Id's 
+*************************
+2019-01-02T02:27:40.784 
+id: 1 |  Username : admin
+Retrieved the Role and Rights for 'null'. 
+*************************
+2019-01-02T02:27:44.506 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:46.783 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:27:59.613 
+id: 1 |  Username : admin
+Successfully deleted message with id '18' .
+*************************
+2019-01-02T02:28:00.761 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:06.819 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:15.003 
+id: 1 |  Username : admin
+Successfully deleted message with id '17' .
+*************************
+2019-01-02T02:28:15.985 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:20.665 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:28.182 
+id: 1 |  Username : admin
+Successfully deleted message with id '20' .
+*************************
+2019-01-02T02:28:29.174 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:32.353 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:40.058 
+id: 1 |  Username : admin
+Successfully deleted message with id '21' .
+*************************
+2019-01-02T02:28:40.911 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:44.489 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:50.506 
+id: 1 |  Username : admin
+Successfully deleted message with id '22' .
+*************************
+2019-01-02T02:28:54.073 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:28:59.649 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:29:06.269 
+id: 1 |  Username : admin
+Successfully deleted message with id '19' .
+*************************
+2019-01-02T02:29:08.268 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:29:11.608 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:29:17.574 
+id: 1 |  Username : admin
+Successfully deleted message with id '23' .
+*************************
+2019-01-02T02:29:18.509 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:29:23.009 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:29:30.290 
+id: 1 |  Username : admin
+Successfully tried to read messages for chat '4: Atomiko .
+*************************
+2019-01-02T02:29:37.487 
+id: 1 |  Username : admin
+9 users where retrieved
+*************************
+2019-01-02T02:29:46.560 
+id: 1 |  Username : admin
+9 users where retrieved

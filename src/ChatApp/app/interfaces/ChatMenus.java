@@ -10,4 +10,5 @@ public interface ChatMenus {
     void execEditUserMenu();
     void execChatsMenu();
     void execSingleChatMenu(Chat chat);
+    void execEditProfileMenu();
 }

@@ -4,6 +4,7 @@ import ChatApp.app.core.Chat;
 import ChatApp.app.core.Msg;
 import ChatApp.app.core.User;
 import ChatApp.app.db.dbcore.Database;
+import ChatApp.app.log.ChatLog;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,6 +46,10 @@ public class MsgDAO extends Database {
 
             chat.getMsgs().add(msg);
         }
+
+        //Log the activity
+        ChatLog.logAcivity( ((answerMsgs.isEmpty())?"Unsuccessfully":"Successfully")
+                + " tried to read messages for chat '" + chat.getId() + ": " + chat.getChatName()+ " .");
     }
 
     public int sendMsg(User curUser, Chat chat, String data) {
@@ -69,6 +74,11 @@ public class MsgDAO extends Database {
             e.printStackTrace();
         }
 
+        //Log the activity
+        ChatLog.logAcivity( ((msgInserted==1)?"successfully":"unsuccessfully")
+                + " tried to send a new message into'" + chat.getChatName() +"\n"
+                + "Message Data: '" + data + "'.");
+
         return msgInserted;
 
     }
@@ -76,15 +86,27 @@ public class MsgDAO extends Database {
     public int toogleMsg(Msg msg) {
         int toogled = 0;
         int toogle = (msg.isActive())? 0 : 1;
+
         String query = "UPDATE `msgs` SET `active` = '"+ toogle + "' WHERE `id` = '" + msg.getId() + "';";
         toogled = execUpdateInsert(query);
+
+        //Log the activity
+        ChatLog.logAcivity( ((toogled==1)?"Successfully":"Unsuccessfully")
+                + " toggled message with id '" + msg.getId() + "' .");
+
         return toogled;
     }
 
     public int deleteMsg(Msg msg) {
         int deletedMsg;
+
         String query = "DELETE FROM `msgs` WHERE `id` = '" + msg.getId() + "';";
         deletedMsg = execUpdateInsert(query);
+
+        //Log the activity
+        ChatLog.logAcivity( ((deletedMsg==1)?"Successfully":"Unsuccessfully")
+                + " deleted message with id '" + msg.getId() + "' .");
+
         return deletedMsg;
     }
 }

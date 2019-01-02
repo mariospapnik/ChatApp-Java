@@ -24,7 +24,7 @@ public class Utilities {
         try
         {
             final String os = System.getProperty("os.name");
-            System.out.println(os);
+//            System.out.println(os);
             if (os.contains("Windows"))
             {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();

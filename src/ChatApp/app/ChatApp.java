@@ -15,6 +15,7 @@ import ChatApp.app.menu.Menu;
 import ChatApp.app.menu.Utilities;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.logging.Logger;
@@ -24,8 +25,9 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
     // Declare the app variable
     private static ChatApp chatApp = null;
     private static Scanner sc;
-    private static final Logger LOGGER = Logger.getLogger( ChatApp.class.getName() );
-    private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    private static Console console;
+//    private static final Logger LOGGER = Logger.getLogger( ChatApp.class.getName() );
+//    private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
     // Declare the variables for current user, current role and all the users and role names
     private static User curUser = null;
@@ -47,6 +49,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
     private static Menu editUserMenu;
     private static Menu chatsMenu;
     private static Menu singleChatMenu;
+    private static Menu EditProfileMenu;
 
 
     private ChatApp(){ }
@@ -60,6 +63,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
 
             chatApp = new ChatApp();
             sc = new Scanner(System.in);
+            console = System.console();
 
             roleDao = RoleDAO.getInstance();
             userDao = UserDAO.getInstance();
@@ -108,7 +112,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
             singleUserMenu.putAction("Chats", () -> execChatsMenu());
 
             if (curRole.getUserRight("canEditSelf"))
-                singleUserMenu.putAction("Edit my profile", () -> editProfile());
+                singleUserMenu.putAction("Edit my profile", () -> execEditProfileMenu());
 
             singleUserMenu.putAction("Back to Main Menu", () -> execMainMenu());
             singleUserMenu.putAction("Exit", () -> System.exit(0));
@@ -129,6 +133,10 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
 
         users = userDao.selectAllUsers();
 
+        if (curRole.getUserRight("canCreateUser")) {
+            usersMenu.putAction("Create a user", () -> signUp() );
+        }
+
         if (curRole.getUserRight("canSearchUser")) {
             usersMenu.putAction("Search for a user", () -> searchUser() );
             usersMenu.putAction("View all users", () -> viewAllUsers() );
@@ -138,7 +146,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
             usersMenu.putAction("Edit a user", () -> execEditUserMenu() );
         }
 
-        usersMenu.putAction("Back to profile view",()-> execMainMenu() );
+        usersMenu.putAction("Back to profile view",()-> execSingleUserMenu() );
         usersMenu.putAction("Exit",()-> System.exit(0));
 
         usersMenu.activateMenu();
@@ -146,17 +154,32 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
 
     public void execEditUserMenu() {
         clrscr();
-        User userToEdit = selectFromUsers(1).get(0);
+
+        User userToEdit;
+        User userSelected = null;
+        try {
+            userSelected = selectFromUsers(1).get(0);    //Select a user to edit
+        }
+        catch( IndexOutOfBoundsException e) {
+            execUsersMenu();    //if none selected go back!
+        }
+        finally {
+            userToEdit = userSelected;
+        }
+
 
         editUserMenu = new Menu("Edit User " +userToEdit.getUsername() + " " , "logged as: " + curUser.getUsername() );
         editUserMenu.clearActions();
 
+        // Toogle User
         if(curRole.getUserRight("canToogleUser"))
             editUserMenu.putAction("Enable/Disable user", ()-> toggleUser(userToEdit) );
 
+        // Edit user type
         if(curRole.getUserRight("canChangeUserType"))
             editUserMenu.putAction("Change user type", ()-> changeUserType(userToEdit) );
 
+        // Edit user First and Last Names
         if(curRole.getUserRight("canEditUser"))
             editUserMenu.putAction("Edit user's fname and Lname", ()-> editUserFLName(userToEdit) );
 
@@ -165,6 +188,25 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         editUserMenu.putAction("Exit",()-> System.exit(0));
 
         editUserMenu.activateMenu();
+
+    }
+
+    public void execEditProfileMenu() {
+        clrscr();
+
+        EditProfileMenu = new Menu("Edit profile " , "logged as: " + curUser.getUsername() );
+        EditProfileMenu.clearActions();
+
+        EditProfileMenu.putAction("Change first or last name ",()-> editUserFLName(curUser));
+
+        EditProfileMenu.putAction("Change password",()-> updateUserPassword());
+
+        EditProfileMenu.putAction("Back",()-> execSingleUserMenu());
+
+        EditProfileMenu.putAction("Exit",()-> System.exit(0));
+
+        EditProfileMenu.activateMenu();
+
 
     }
 
@@ -199,8 +241,8 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         clrscr();
         viewSingleChat(chat);
         singleChatMenu = new Menu("Chat: " + chat.getChatName(), "logged as: " + curUser.getUsername() );
-        singleChatMenu.putAction("Previous Messages", ()-> previousMsgs() );
-        singleChatMenu.putAction("Next Messages", () -> nextMsgs() );
+//        singleChatMenu.putAction("Previous Messages", ()-> previousMsgs() );
+//        singleChatMenu.putAction("Next Messages", () -> nextMsgs() );
         if (curRole.getMsgsRight("canSendMsg")) {
             singleChatMenu.putAction("Send Message", () -> sendMsg(chat));
         }
@@ -210,9 +252,18 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         if (curRole.getMsgsRight("canDeleteMsg")) {
             singleChatMenu.putAction("Delete Message", () -> deleteMsg(chat));
         }
+        if (curRole.getChatsRight("canAddUserToChat")) {
+            singleChatMenu.putAction("Add user(s) to Chat", () -> addUsersToChat(chat));
+            singleChatMenu.putAction("Remove user(s) from Chat", () -> removeUsersFromChat(chat));
+        }
+        if (curRole.getChatsRight("canExitChat")) {
+            singleChatMenu.putAction("Exit from Chat", () -> exitChat(chat));
+        }
+
         if (curRole.getChatsRight("canDeleteChat")) {
             singleChatMenu.putAction("Delete Chat", () -> deleteChat(chat));
         }
+
         singleChatMenu.putAction("Back to Chat view", () -> execSingleChatMenu(chat) );
         singleChatMenu.putAction("Back to all Chats", () -> execChatsMenu() );
 
@@ -237,10 +288,12 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
 
             int tries = 1;
             while(tries<4) {
-                String pass = sc.nextLine();
-                boolean isPassCorrect = userDao.checkPass(userID, pass); // Check if the Password is correct
-                if (isPassCorrect) {
-                    setCurUserAndEnvironment(userID);
+
+               String pass = readPass();
+
+
+                if ( userDao.checkPass(userID, pass) ) {    // Check if the Password is correct
+                    setCurUserAndEnvironment(userID);       // Get the users list and populate the CurUser and CurRole
                     clrscr();
                     showExpBox("> Logged in as " + curUser.getUsername() );
                     pauseExecution("  Press any key.");
@@ -274,7 +327,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         int isCreated = 0;
 
         username = usernameInput();     //get username input from user
-        pass = passInput(username);     //get password input from user
+        pass = newPassInput(username);     //get password input from user
         fname = nameInput("first");     //get first name input from user
         lname = nameInput("last");      //get last name input from user
 
@@ -284,7 +337,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         //check if the user has been created!
         if (isCreated==1) {
             showExpBox("> User "+username+" was created!.");
-            pauseExecution("  Please log in");
+            pauseExecution();
         }
         else{
             showExpBox("> Something went wrong!\n  Please try again.");
@@ -311,32 +364,61 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
 
             showExpBox("> Create new user\nEnter username");
             username = sc.nextLine();
+            String pattern = "^[a-zA-Z0-9_-]{5,10}$";
+            if (!username.matches(pattern)) {
+                clrscr();
+                showExpBox("> Username should be at least 5 and up to 10 characters long.\n " +
+                        ".It should contain only letters, digits, underscores('_') and dashes('-').");
+                pauseExecution();
+                continue;
+            }
             int id = userDao.checkUser(username);
             if (id != 0) {
                 clrscr();
                 showExpBox(username + "\n already exists!\n");
             }
-            if (id == 0){
-                break;
-            }
+            else break;
         }
         return username;
     }
 
-    public String passInput(String username) {
+    public String readPass(){
+        String pass;
+        if (console == null) {
+//                    System.out.println("Couldn't get Console instance");
+            pass = sc.nextLine();
+        }
+        else {
+            char[] passwordChars = console.readPassword();
+            pass = new String(passwordChars);
+        }
+        return pass;
+    }
+
+    public String newPassInput(String username) {
         //password input
         String pass;
+        String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,10}";
         clrscr();
         while(true) {
             showExpBox(username + "\n> Enter password");
-            pass = sc.nextLine();
+            pass = readPass();
+            if (!pass.matches(pattern)) {
+                clrscr();
+                showExpBox("> Password should be at least 8 character long\n " +
+                        "and contain at least one digit, one uprcase letter, one lowercase letter and one symbol.");
+                pauseExecution();
+                continue;
+            }
+
             clrscr();
             showExpBox("> Please repeat your password");
-            String passRepeat = sc.nextLine();
+            String passRepeat = readPass();
             if (passRepeat.equals(pass)) break;
             else {
                 clrscr();
-                showExpBox("> Passwords are not identical.\n  Try again");
+                showExpBox("> Passwords are not identical.");
+                if (!requestConfirmation("Try again? (y/n)")) break;
             }
         }
         return pass;
@@ -435,10 +517,11 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         chatInserted = chatDao.createChat(chat);    //create the chat in db
 
         ArrayList<User> usersSelected = selectFromUsers(true);
-
-        chatUsersInserted = chatUsersDao.insertChatUsers(chat, usersSelected);
-        if (chatUsersInserted > 0){
-            System.out.printf("Inserted" + chatUsersInserted + "rows." );
+        if (chatInserted == 1) {
+            chatUsersInserted = chatUsersDao.insertChatUsers(chat, usersSelected);
+            if (chatUsersInserted > 0) {
+               showExpBox("> Chat '" + chat.getChatName() + "' was created\n and " + chatUsersInserted + " users where added.");
+            }
         }
         pauseExecution();
         execChatsMenu();
@@ -448,7 +531,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
 
         int chatDeleted;
 
-        if (requestConfirmation("Are you sure you want to delete Chat '" + chat.getChatName()+ "' ? (y/n) " )) {
+        if (requestConfirmation("> Are you sure you want to delete Chat '" + chat.getChatName()+ "' ? (y/n) " )) {
             chatDeleted = chatDao.deleteChat(chat);
             if (chatDeleted == 1) {
                 showExpBox("> Chat deleted!");
@@ -464,25 +547,111 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         String chatName;
 
         while (true) {
-            System.out.println("Enter chat name:\n");
+            clrscr();
+            showExpBox("> Enter chat name:\n");
             chatName = sc.nextLine();
             if (chatName!=null)
-                if (requestConfirmation("Proceed with '" + chatName + "' as the name of the Chat? (y/n) \n"))
+                if (requestConfirmation("> Proceed with '" + chatName + "' as the name of the Chat? (y/n) \n"))
                     return chatName;
         }
     }
 
-    public void editProfile() {
-        System.out.println("Not yet implemented. Press any key to go back!");
-        sc.nextLine();
-        execSingleUserMenu();
+    public void addUsersToChat(Chat chat){
+        int usersAdded = 0;
+        ArrayList<User> usersNotInChat = new ArrayList<>();
+        // create a list with users not in the chat
+        users.forEach((k,v)-> { if (!chat.getUsersIDs().contains(k))  usersNotInChat.add(v); });
+        // select users from this list
+        ArrayList<User> usersSelected = selectFromUsers(usersNotInChat);
+        // if not empty execute the DELETE
+        if (!usersSelected.isEmpty())
+            usersAdded = chatUsersDao.insertChatUsers(chat, usersSelected);
+
+        showExpBox( (usersAdded == usersSelected.size())
+                ?"> Added selected users to chat!"
+                :"> Something went wrong. Please try again.");
+        pauseExecution();
+
+        execChatsMenu();
     }
 
+    public void removeUsersFromChat(Chat chat) {
+        int usersRemoved = 0;
+        ArrayList<User> usersInChat = new ArrayList<>();
+        // create a list with users in the chat
+        users.forEach((k,v)-> { if (chat.getUsersIDs().contains(k))  usersInChat.add(v); });
+        // select users from this list
+        ArrayList<User> usersSelected  = selectFromUsers(usersInChat);
+        // if not empty execute the DELETE
+        if (!usersSelected.isEmpty())
+            usersRemoved = chatUsersDao.deleteChatUsers(chat, usersSelected);
+
+        showExpBox( (usersRemoved == usersSelected.size())
+                ?"> Removed selected users from chat!"
+                :"> Something went wrong. Please try again.");
+        pauseExecution();
+
+        execChatsMenu();
+    }
+
+    public void exitChat(Chat chat) {
+        int curUserRemoved = 0;
+        //request confirmation
+        if (!requestConfirmation("Are you sure you want to leave chat '" + chat.getChatName() + "' ?")) execChatsMenu();
+
+        // make the array with one user and execute the DELETE
+        ArrayList<User> userToRemove = new ArrayList<>();
+        userToRemove.add(curUser);
+        curUserRemoved = chatUsersDao.deleteChatUsers(chat, userToRemove);
+
+        showExpBox( (curUserRemoved == userToRemove.size())
+                ?"> You left the chat!"
+                :"> Something went wrong. Please try again.");
+
+        pauseExecution();
+        execChatsMenu();
+    }
+
+    public void updateUserPassword() {
+        int passUpdated =0;
+
+        showExpBox("> Enter your current password");
+
+        String pass = readPass();
+
+        clrscr();
+        if ( userDao.checkPass(curUser.getID(), pass) ) {    // Check if the Password is correct
+            showExpBox("> New Password for " + curUser.getUsername());
+
+            String newPass = newPassInput(curUser.getUsername());
+
+            passUpdated = userDao.updatePass(curUser, newPass);
+
+            if ( passUpdated ==1 ){
+                clrscr();
+                showExpBox("> Password successfully changed!");
+                pauseExecution();
+                logout();
+            }
+            else {
+                clrscr();
+                showExpBox("> Something went wrong. Please try again.");
+                pauseExecution();
+                execSingleUserMenu();
+            }
+        }
+        else {
+            showExpBox("> Wrong password. Please try again!");
+            pauseExecution();
+        }
+
+        execEditProfileMenu();
+    }
 
     public void toggleUser(User user) {
-        if (requestConfirmation("Are you sure you want to toogle " + user.getUsername() + " ? (y/n)")) {
-            int userToogled = userDao.toogleUser(user);
-            if (userToogled == 1) {
+        if (requestConfirmation("> Are you sure you want to toggle " + user.getUsername() + " ? (y/n)")) {
+            int userToggled = userDao.toogleUser(user);
+            if (userToggled == 1) {
                 showExpBox("> " + user.getUsername() + " toggled!");
                 pauseExecution();
             }
@@ -504,7 +673,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
                 useRoleUpdated = userDao.updateUserRole(user, choice);
                 if (useRoleUpdated ==1 ){
                     clrscr();
-                    showExpBox(user.getUsername() + " role has changed to " + roleNames.get(choice));
+                    showExpBox("> " + user.getUsername() + " role has changed to " + roleNames.get(choice));
                     pauseExecution();
                 }
             }
@@ -522,15 +691,30 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
     public void editUserFLName(User user) {
         clrscr();
         printUserDetails(user,1);
+        String name = null;
 
-        if (requestConfirmation("Change first name? (y/n)\n")){
-            System.out.println("> Enter new first name:\n");
-            String fname = sc.nextLine();
-        }
+        String[] fields = {"fname","lname"};
+        String[] names = {"first name","last name"};
 
-        if (requestConfirmation("Change last name? (y/n)\n")){
-            System.out.println("> Enter new last name:\n");
-            String lname = sc.nextLine();
+        for (int i=0 ; i<fields.length ; i++) {
+            if (requestConfirmation("> Change " + names[i] + " ? (y/n)\n")) {
+                System.out.println("> Enter new " + names[i] + ":\n");
+                name = sc.nextLine();
+                if (name != null) {
+                    if (userDao.updateUserFLName(user, name, fields[i]) == 1) {
+                        showExpBox("> Changed " + user.getUsername() + "'s " + names[i] + " to " + name + " .");
+                        pauseExecution();
+                    }
+                    else {
+                        showExpBox("> Something went wrong!");
+                        pauseExecution("> Please try again!");
+                    }
+                }
+                else {
+                    showExpBox("> Not valid input!");
+                    pauseExecution("> Please try again!");
+                }
+            }
         }
 
         execUsersMenu();
@@ -589,18 +773,18 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
                 int usertoAdd = Integer.parseInt(input);
                 if (indexForUsers.containsKey(usertoAdd)) {
                     selectedUsers.add( indexForUsers.get(usertoAdd) );
-                    System.out.println("Added user '" + indexForUsers.get(usertoAdd).getUsername() + "'.");
+                    System.out.println("> Added user '" + indexForUsers.get(usertoAdd).getUsername() + "'.");
                 }
                 else {
-                    System.out.println("Not a valid user");
+                    System.out.println("> Not a valid user");
                 }
             }
             catch ( NumberFormatException e){
-                System.out.println("Not a number!");
+                System.out.println("> Not a number!");
             }
 
             if (selectedUsers.size() < limit) {
-                if (!requestConfirmation("Do you want to continue adding users? (y/n)..\n")) break;
+                if (!requestConfirmation("> Do you want to continue adding users? (y/n)..\n")) break;
             }
             else break;
 
@@ -638,7 +822,6 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         return selectFromUsers(usersToSelect, usersToSelect.size(), addAdmin);
     }
 
-
     public void printUserDetailsTitles() {
         System.out.printf("%4s | %8s | %10s | %20s | %20s | %8s | %17s\n", "No", "Role", "Username", "First Name", "Last Name","Active","Reg.Date");
     }
@@ -646,14 +829,6 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
     public void printUserDetails(User user, int i) {
         System.out.printf("%4d | %8s | %10s | %20s | %20s | %8s | %s\n",
                 i ,  roleNames.get( user.getRole().getID() ) , user.getUsername(), user.getFname(), user.getLname(), user.getActive(), user.getRegDate().toString() );
-    }
-
-    public void previousMsgs() {
-        notYetImplemented();
-    }
-
-    public void nextMsgs() {
-        notYetImplemented();
     }
 
     public void toogleMsg(Chat chat) {
@@ -669,7 +844,7 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
         int msgDeleted;
         Msg msg = selectMsg(chat);
 
-        if (requestConfirmation("Are you sure you want to delete message \n'" + msg.getData() + "' ? \n (y/n) " )) {
+        if (requestConfirmation("> Are you sure you want to delete message \n'" + msg.getData() + "' ? \n (y/n) " )) {
             msgDeleted = msgDao.deleteMsg(msg);
             if (msgDeleted == 1) {
                 showExpBox("> Message deleted!");
@@ -687,36 +862,51 @@ public class ChatApp extends Utilities implements ChatMenus, ChatMethods {
             try {
                 int selectedMsg = Integer.parseInt(sc.nextLine()) - 1;
                 if (selectedMsg >= 0 && selectedMsg < chat.getMsgs().size()) {
-                    pauseExecution("\nMessage " + (selectedMsg+1) + " selected.\nPress any key.\n" );
+                    pauseExecution("\n> Message " + (selectedMsg+1) + " selected.\nPress any key.\n" );
                     return chat.getMsgs().get(selectedMsg);
                 }
                 else{
-                    pauseExecution("Such message does not exist! Press any key");
+                    pauseExecution("> Such message does not exist! Press any key");
                 }
             } catch (NumberFormatException  e) {
-                pauseExecution("No int provided");
+                pauseExecution("> No int provided");
             }
         }
 
     }
 
     public void sendMsg(Chat chat) {
-        viewSingleChat(chat);
-        showExpBox("Enter your message: (250 characters max) ");
-        String data = sc.nextLine();
-        if( requestConfirmation("Are you sure yu want to send the message? (y/n)") ) {
-            if (msgDao.sendMsg(curUser, chat, data) == 1) {
-                showExpBox("Message was sent!");
-                pauseExecution();
-            }
+        String data;
+        while (true) {
+            viewSingleChat(chat);
+
+            showExpBox("> Enter your message: (250 characters max) ");
+            data = sc.nextLine();
+
+            if (data.length()<250) break;
+
+            clrscr();
+            showExpBox("> No more that 250 characters allowed!");
+            pauseExecution();
         }
+
+        if (msgDao.sendMsg(curUser, chat, data) == 1) {
+            clrscr();
+            showExpBox("> Message was sent!");
+            pauseExecution();
+        }
+
         execSingleChatMenu(chat);
     }
 
     public void notYetImplemented() {
-        System.out.println("Not yet implemented. Press any key to go back!");
-        sc.nextLine();
+        showExpBox("> Not yet implemented. Press any key to go back!");
+        pauseExecution();
         execEditUserMenu();
+    }
+
+    public User getCurUser() {
+        return curUser;
     }
 
 }

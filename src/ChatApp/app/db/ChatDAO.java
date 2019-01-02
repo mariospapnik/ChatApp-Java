@@ -3,6 +3,7 @@ package ChatApp.app.db;
 import ChatApp.app.core.Chat;
 import ChatApp.app.core.User;
 import ChatApp.app.db.dbcore.Database;
+import ChatApp.app.log.ChatLog;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,8 +85,6 @@ public class ChatDAO extends Database {
 
         String chatSelectQuery = "SELECT * FROM `chats` ORDER BY `id` DESC LIMIT 1;";
 
-//        String chatsUsersQuery =  "INSERT INTO `chats_users` (`chat_id`,`user_id`)"+
-//                "VALUES (?,?);";
 
         try {
             //INSERT NEW ROW IN CHAT TABLE
@@ -104,18 +103,15 @@ public class ChatDAO extends Database {
                 chat.setId(rs.getInt("id"));
                 rs.close();
                 st.close();
-
-//                //INSERT THE RELATION BETWEEN CREATOR_USER AND CHAT INTO CHATS_USERS TABLE
-//                prest = conn.prepareStatement(chatsUsersQuery);
-//                prest.setInt(1, chat.getId() );
-//                prest.setInt(2, chat.getCreatorUserID() );
-//                prest.close();
-
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        //Log the activity
+        ChatLog.logAcivity( ((chatRowInserted==1)?"successfully":"unsuccessfully")
+                + " tried to create a new chat with id: " +chat.getId() + " and name: " + chat.getChatName() +" .");
 
         return chatRowInserted;
     }
@@ -132,20 +128,11 @@ public class ChatDAO extends Database {
             chatsDeleted =  execUpdateInsert(queryDeleteChat);
         }
 
+        //Log the activity
+        ChatLog.logAcivity( ((chatsDeleted==1)?"Successfully":"Unsuccessfully")
+                + " deleted chat with id " + chat.getId() + " and name '" + chat.getChatName() + "' .");
+
         return chatsDeleted;
     }
 }
 
-
-//
-//    //SELECT USERS OF THE CHAT
-//    String queryChatUsers = new StringBuilder()
-//            .append("SELECT DISTINCT `users`.`id` FROM `chat02`.`chat_users` ")
-//            .append("INNER JOIN `chat02`.`users` ON `chat_users`.`chat_id` = " + chat.getId() + ";").toString();
-//
-//    Collection<Map<String,Object>> answerChatUsers = new ArrayList<>();
-//        answerChatUsers = getGenericSelect(queryChatUsers);
-//
-//                for (Map<String,Object> row: answerChatUsers){
-//        chat.getUsersIDs().add((Integer) row.get("id"));
-//        }
